@@ -3889,7 +3889,6 @@ git commit -m "feat: /bufe sayfasi"
 ### Task 36: `app/hakkimizda/page.tsx`
 
 **Files:**
-- Modify: `src/config/images.ts` (bir slot ekle: `about.wideBand`)
 - Create: `src/app/hakkimizda/page.tsx`
 
 **Interfaces:**
