@@ -4,7 +4,10 @@ import { render, screen } from '@testing-library/react'
 import SmartImage from './SmartImage'
 
 vi.mock('next/image', () => ({
-  default: (props: ComponentProps<'img'>) => <img {...props} alt={props.alt} />,
+  default: (props: ComponentProps<'img'>) => {
+    // eslint-disable-next-line jsx-a11y/alt-text,@next/next/no-img-element
+    return <img {...props} />
+  },
 }))
 
 vi.mock('@/config/images', () => ({
