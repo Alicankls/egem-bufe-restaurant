@@ -1,6 +1,11 @@
 import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans, Inter } from 'next/font/google'
 import './globals.css'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
+import MobileActionBar from '@/components/layout/MobileActionBar'
+import ScrollTop from '@/components/layout/ScrollTop'
+import { siteConfig } from '@/config/site'
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin', 'latin-ext'],
@@ -17,14 +22,29 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'EGEM-TRAK Restaurant & EGEM Büfe',
-  description: 'Çorlu Yeni Sanayi Bölgesi\'nde günlük tabldot ve hızlı lezzetler.',
+  metadataBase: new URL(siteConfig.siteUrl),
+  title: {
+    default: `${siteConfig.restaurant.name} & ${siteConfig.bufe.name}`,
+    template: `%s · ${siteConfig.brandName}`,
+  },
+  description: 'Çorlu Yeni Sanayi Bölgesi\'nde günlük tabldot ve hızlı lezzetler. Masanızdaki QR kodu okutarak menüyü hemen görün.',
+  openGraph: {
+    type: 'website',
+    locale: 'tr_TR',
+    siteName: siteConfig.brandName,
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="tr" className={`${plusJakartaSans.variable} ${inter.variable}`}>
-      <body className="font-sans antialiased">{children}</body>
+      <body className="pb-16 font-sans text-ink antialiased lg:pb-0">
+        <Header />
+        <main>{children}</main>
+        <Footer />
+        <MobileActionBar />
+        <ScrollTop />
+      </body>
     </html>
   )
 }
