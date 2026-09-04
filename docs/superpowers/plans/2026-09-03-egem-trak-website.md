@@ -1811,17 +1811,17 @@ export default function Footer() {
           <p>
             &copy; {new Date().getFullYear()} {siteConfig.brandName}. Tüm hakları saklıdır.
           </p>
-          <div className="flex gap-4">
-            <a href={siteConfig.social.facebook} aria-label="Facebook">
+          <div className="flex gap-1">
+            <a href={siteConfig.social.facebook} aria-label="Facebook" className="flex h-11 w-11 items-center justify-center">
               <Facebook className="h-4 w-4" aria-hidden="true" />
             </a>
-            <a href={siteConfig.social.instagram} aria-label="Instagram">
+            <a href={siteConfig.social.instagram} aria-label="Instagram" className="flex h-11 w-11 items-center justify-center">
               <Instagram className="h-4 w-4" aria-hidden="true" />
             </a>
-            <a href={siteConfig.social.youtube} aria-label="YouTube">
+            <a href={siteConfig.social.youtube} aria-label="YouTube" className="flex h-11 w-11 items-center justify-center">
               <Youtube className="h-4 w-4" aria-hidden="true" />
             </a>
-            <a href={siteConfig.social.whatsapp} aria-label="WhatsApp">
+            <a href={siteConfig.social.whatsapp} aria-label="WhatsApp" className="flex h-11 w-11 items-center justify-center">
               <MessageCircle className="h-4 w-4" aria-hidden="true" />
             </a>
           </div>
@@ -2189,7 +2189,7 @@ export default function VideoModal({ videoId, triggerClassName }: VideoModalProp
       </button>
       {open && (
         <div role="dialog" aria-modal="true" aria-label="Video oynatıcı" className="fixed inset-0 z-50 flex items-center justify-center bg-brand-950/90 p-4">
-          <button onClick={() => setOpen(false)} aria-label="Kapat" className="absolute right-5 top-5 text-white">
+          <button onClick={() => setOpen(false)} aria-label="Kapat" className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center text-white">
             <X className="h-7 w-7" aria-hidden="true" />
           </button>
           <div className="aspect-video w-full max-w-3xl">
@@ -2309,13 +2309,13 @@ export default function Lightbox({ images, activeIndex, onClose, onNavigate }: L
 
   return (
     <div role="dialog" aria-modal="true" aria-label="Görsel galerisi" className="fixed inset-0 z-50 flex items-center justify-center bg-brand-950/90 p-4">
-      <button onClick={onClose} aria-label="Kapat" className="absolute right-5 top-5 text-white">
+      <button onClick={onClose} aria-label="Kapat" className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center text-white">
         <X className="h-7 w-7" aria-hidden="true" />
       </button>
       <button
         onClick={() => onNavigate((activeIndex - 1 + images.length) % images.length)}
         aria-label="Önceki görsel"
-        className="absolute left-4 text-white"
+        className="absolute left-2 flex h-11 w-11 items-center justify-center text-white"
       >
         <ChevronLeft className="h-8 w-8" aria-hidden="true" />
       </button>
@@ -2329,7 +2329,7 @@ export default function Lightbox({ images, activeIndex, onClose, onNavigate }: L
       <button
         onClick={() => onNavigate((activeIndex + 1) % images.length)}
         aria-label="Sonraki görsel"
-        className="absolute right-4 text-white"
+        className="absolute right-2 flex h-11 w-11 items-center justify-center text-white"
       >
         <ChevronRight className="h-8 w-8" aria-hidden="true" />
       </button>
@@ -2463,10 +2463,18 @@ export default function Hero() {
         </div>
       )}
 
-      <button onClick={prev} aria-label="Önceki slayt" className="absolute left-4 top-1/2 z-10 -translate-y-1/2 text-white/80 hover:text-white">
+      <button
+        onClick={prev}
+        aria-label="Önceki slayt"
+        className="absolute left-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center text-white/80 hover:text-white"
+      >
         <ChevronLeft className="h-9 w-9" aria-hidden="true" />
       </button>
-      <button onClick={next} aria-label="Sonraki slayt" className="absolute right-4 top-1/2 z-10 -translate-y-1/2 text-white/80 hover:text-white">
+      <button
+        onClick={next}
+        aria-label="Sonraki slayt"
+        className="absolute right-2 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center text-white/80 hover:text-white"
+      >
         <ChevronRight className="h-9 w-9" aria-hidden="true" />
       </button>
 
@@ -4679,7 +4687,7 @@ export default function CategoryBar({ categories }: CategoryBarProps) {
             key={category.key}
             onClick={() => scrollToCategory(category.key)}
             className={cn(
-              'min-h-[36px] shrink-0 whitespace-nowrap rounded-full border px-4 py-2 text-[13px] font-semibold',
+              'flex min-h-[44px] shrink-0 items-center whitespace-nowrap rounded-full border px-4 py-2 text-[13px] font-semibold',
               activeId === category.key ? 'border-accent-500 text-brand-500' : 'border-line text-ink-soft'
             )}
           >
