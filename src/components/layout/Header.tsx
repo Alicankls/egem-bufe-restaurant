@@ -38,7 +38,7 @@ export default function Header() {
       >
         <div className="hidden h-16 items-center px-8 lg:flex">
           <div className="flex flex-1 items-center gap-8">
-            <button aria-label="Ara" className="text-white">
+            <button aria-label="Ara" className="p-3 text-white">
               <Search className="h-5 w-5" aria-hidden="true" />
             </button>
             <nav className="flex gap-6">
@@ -70,13 +70,13 @@ export default function Header() {
         </div>
 
         <div className="flex h-16 items-center justify-between px-5 lg:hidden">
-          <button aria-label="Menüyü aç" onClick={() => setDrawerOpen(true)} className="text-white">
+          <button aria-label="Menüyü aç" onClick={() => setDrawerOpen(true)} className="p-2.5 text-white">
             <MenuIcon className="h-6 w-6" aria-hidden="true" />
           </button>
           <Link href="/" aria-label={siteConfig.brandName}>
             <SmartImage slot="brand.logoLight" className="h-9 w-[140px]" dark sizes="140px" />
           </Link>
-          <a href={`tel:${siteConfig.restaurant.phone}`} aria-label="Ara" className="text-white">
+          <a href={`tel:${siteConfig.restaurant.phone}`} aria-label="Ara" className="p-3 text-white">
             <Phone className="h-5 w-5" aria-hidden="true" />
           </a>
         </div>
