@@ -18,7 +18,7 @@ function slot(input: Omit<ImageSlot, 'src'>): ImageSlot {
 }
 
 export const imageSlots: Record<string, ImageSlot> = {
-  'brand.logo': slot({ key: 'brand.logo', alt: 'EGEM logosu', ratio: '200/52', recommended: '400x104', note: 'Koyu zeminde kullanılacak logo (şeffaf PNG/SVG)' }),
+  'brand.logo': slot({ key: 'brand.logo', alt: 'EGEM logosu', ratio: '200/52', recommended: '400x104', note: 'Açık/beyaz zeminde kullanılacak standart logo (şeffaf PNG/SVG) — /qr sayfasındaki yazdırılabilir kartlarda kullanılır' }),
   'brand.logoLight': slot({ key: 'brand.logoLight', alt: 'EGEM logosu (beyaz)', ratio: '200/52', recommended: '400x104', note: 'Şeffaf header için beyaz varyant logo' }),
 
   'hero.slide1': slot({ key: 'hero.slide1', alt: 'EGEM-TRAK Restaurant\'ta sıcak yemek servisi', ratio: '16/9', recommended: '1920x1080', note: 'Tezgahtan geniş çekim, sıcak ışık, dolu tabaklar', priority: true }),

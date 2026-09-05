@@ -618,7 +618,7 @@ function slot(input: Omit<ImageSlot, 'src'>): ImageSlot {
 }
 
 export const imageSlots: Record<string, ImageSlot> = {
-  'brand.logo': slot({ key: 'brand.logo', alt: 'EGEM logosu', ratio: '200/52', recommended: '400x104', note: 'Koyu zeminde kullanılacak logo (şeffaf PNG/SVG)' }),
+  'brand.logo': slot({ key: 'brand.logo', alt: 'EGEM logosu', ratio: '200/52', recommended: '400x104', note: 'Açık/beyaz zeminde kullanılacak standart logo (şeffaf PNG/SVG) — /qr sayfasındaki yazdırılabilir kartlarda kullanılır' }),
   'brand.logoLight': slot({ key: 'brand.logoLight', alt: 'EGEM logosu (beyaz)', ratio: '200/52', recommended: '400x104', note: 'Şeffaf header için beyaz varyant logo' }),
 
   'hero.slide1': slot({ key: 'hero.slide1', alt: 'EGEM-TRAK Restaurant\'ta sıcak yemek servisi', ratio: '16/9', recommended: '1920x1080', note: 'Tezgahtan geniş çekim, sıcak ışık, dolu tabaklar', priority: true }),
@@ -5287,7 +5287,7 @@ Bu tablo, `src/config/images.ts` içindeki tüm görsel slotlarını listeler. B
 
 | Slot Key | Sayfa / Bölüm | Dosya Yolu | Oran | Önerilen Boyut | İçerik Önerisi |
 |---|---|---|---|---|---|
-| brand.logo | Header (koyu zemin) / Footer / /qr | /images/brand/logo.png | 200/52 | 400x104 | Koyu zeminde kullanılacak logo, şeffaf PNG/SVG |
+| brand.logo | /qr (yazdırılabilir kartlar, beyaz zemin) | /images/brand/logo.png | 200/52 | 400x104 | Açık/beyaz zeminde kullanılacak standart logo, şeffaf PNG/SVG |
 | brand.logoLight | Header (şeffaf & sticky) / Footer | /images/brand/logo-light.png | 200/52 | 400x104 | Şeffaf header için beyaz varyant logo |
 | hero.slide1 | Anasayfa Hero, slayt 1 | /images/hero/slide-1.jpg | 16/9 | 1920x1080 | Tezgahtan geniş çekim, sıcak ışık, dolu tabaklar |
 | hero.slide2 | Anasayfa Hero, slayt 2 | /images/hero/slide-2.jpg | 16/9 | 1920x1080 | Büfe tezgahı, hızlı hazırlık anı, canlı renkler |
