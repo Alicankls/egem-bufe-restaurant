@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# EGEM-TRAK Restaurant & EGEM Büfe — Web Sitesi
 
-## Getting Started
+Çorlu Yeni Sanayi Bölgesi'ndeki EGEM-TRAK Restaurant ve EGEM Büfe için tanıtım sitesi ve QR menü.
+Site üzerinde sepet/ödeme/sipariş akışı YOKTUR — yalnızca tanıtım ve dijital menü sunar.
 
-First, run the development server:
+## Kurulum
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Tarayıcıda `http://localhost:3000` adresini aç.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Diğer komutlar:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build   # production build
+npm run start   # production sunucusunu başlat (önce build gerekir)
+npm run lint    # ESLint kontrolü
+npm test        # Vitest test paketi
+npx tsc --noEmit  # TypeScript tip kontrolü
+```
 
-## Learn More
+## Görsel Ekleme (3 Adım)
 
-To learn more about Next.js, take a look at the following resources:
+Site şu an görselsiz kurulmuştur ve markalı placeholder'larla profesyonel görünür. Bir görsel eklemek için:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Dosyayı ilgili `public/images/<klasör>/` içine at (klasörler: `brand/`, `hero/`, `home/`, `restaurant/`, `bufe/`, `menu/`, `gallery/`, `og/` — hangi slotun hangi klasöre gittiğini `IMAGES.md`'den kontrol et).
+2. `src/config/images.ts` içinde ilgili slotun `src` alanını doldur, örn.:
+   ```ts
+   'hero.slide1': slot({ ..., src: '/images/hero/slide-1.jpg' }),
+   ```
+   (Not: bu dosyadaki `slot()` yardımcı fonksiyonu `src`'yi varsayılan olarak `null` yapar; `src` eklemek için literal objeye `src: '...'` alanını ekleyin.)
+3. Başka hiçbir dosyaya dokunmayın — sayfa otomatik olarak günceller, layout kaymaz (sabit en-boy oranı sayesinde).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Tüm slotların tam listesi ve içerik önerileri için `IMAGES.md`'ye bakın.
 
-## Deploy on Vercel
+## İşletme Bilgisi Güncelleme
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Telefon, WhatsApp, adres, harita linki, sosyal medya ve çalışma saatleri **yalnızca** `src/config/site.ts` dosyasında tutulur. Bu dosyadaki `// TODO: müşteriden alınacak` yorumlu alanları gerçek bilgilerle güncelleyin. Başka hiçbir dosyada telefon/adres hard-code edilmemiştir.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Menü/nav linklerini değiştirmek için `src/config/nav.ts`'i düzenleyin.
+
+## Menü ve Fiyat Güncelleme
+
+- Restaurant menüsü: `src/data/menu.ts` (`restaurantMenu` dizisi + `todaysSpecial` — bugünün tabldotu).
+- Büfe menüsü: `src/data/bufe.ts` (`bufeMenu` dizisi).
+- Her ürün: `{ name, desc?, price?, tags?, image? }`. `tags` şu değerleri alabilir: `'acili' | 'vejetaryen' | 'yeni' | 'gunun-yemegi'`.
+- Fiyatları tüm sitede gizlemek/göstermek için `src/config/site.ts` içindeki `showPrices` bayrağını `false`/`true` yapın.
+- Bir ürüne görsel eklemek isterseniz `image: null` yerine `image: '/images/menu/<dosya-adi>.jpg'` yazın; görsel eklenmişse menüde küçük bir kare thumbnail görünür, boşsa satır görselsiz/kompakt kalır.
+
+## QR Kod Yazdırma
+
+`/qr` sayfasını açın (bu sayfa arama motorlarına kapalıdır — `noindex`). Üç kart görünür: genel menü, yalnızca Restaurant, yalnızca Büfe. Tarayıcıda Ctrl/Cmd+P ile yazdırın; yazdırma önizlemesinde yalnızca kartlar görünür (header/footer/mobil bar otomatik gizlenir), A4 kağıda uygun şekilde biçimlenir.
+
+QR kodların doğru adrese yönlendirmesi için önce `src/config/site.ts` içindeki `siteUrl` alanının gerçek yayın domaininizle güncellenmiş olması gerekir.
+
+## Deploy
+
+Proje bir Next.js (App Router) uygulamasıdır, önerilen deploy hedefi **Vercel**'dir:
+
+1. Depoyu GitHub/GitLab'a push edin.
+2. [vercel.com](https://vercel.com) üzerinde "New Project" ile depoyu içe aktarın (framework otomatik "Next.js" olarak algılanır, ek ayar gerekmez).
+3. Deploy sonrası gerçek domaini bağlayın ve `src/config/site.ts` içindeki `siteUrl` değerini bu domainle güncelleyip yeniden deploy edin (sitemap/JSON-LD/QR mutlak URL'leri buna bağlıdır).
+
+Vercel dışında herhangi bir Node.js (≥18) destekleyen sunucuda da `npm run build && npm run start` ile çalıştırılabilir.
+
+## Proje Yapısı
+
+```
+src/app/          Sayfalar (App Router) — her klasör bir route
+src/components/    layout/ (Header, Footer, MobileDrawer, ...) · ui/ (Button, SmartImage, ...) ·
+                   sections/ (anasayfa & alt sayfa bölümleri) · menu/ (QR menü bileşenleri)
+src/config/        site.ts (işletme bilgisi), images.ts (görsel slotları), nav.ts (menü linkleri)
+src/data/          menu.ts, bufe.ts, faq.ts, reviews.ts, features.ts
+src/lib/           utils.ts, hours.ts, useSlider.ts, useActiveSection.ts, menuSearch.ts, qr.ts, jsonld.ts
+public/images/     Statik görseller (bkz. IMAGES.md)
+```
+
+## Test
+
+Proje, saf mantık (açık/kapalı hesaplama, arama/filtreleme, slider index matematiği) ve etkileşimli bileşenler
+(Header, Accordion, form validasyonu, modallar) için Vitest + React Testing Library testleri içerir. Salt sunum
+bileşenleri (kartlar, bölümler, sayfalar) için ayrı otomatik test yazılmamıştır; bunlar `npm run build` ve manuel
+tarayıcı doğrulamasıyla kontrol edilir.
