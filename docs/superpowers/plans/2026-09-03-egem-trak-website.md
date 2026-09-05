@@ -4377,10 +4377,10 @@ if (isMenuPage) {
         <SmartImage slot="brand.logoLight" className="h-9 w-[140px]" dark sizes="140px" />
       </Link>
       <div className="flex items-center gap-4">
-        <a href={`tel:${siteConfig.restaurant.phone}`} aria-label="Ara" className="text-white">
+        <a href={`tel:${siteConfig.restaurant.phone}`} aria-label="Ara" className="p-3 text-white">
           <Phone className="h-5 w-5" aria-hidden="true" />
         </a>
-        <a href={siteConfig.social.whatsapp} aria-label="WhatsApp" className="text-white">
+        <a href={siteConfig.social.whatsapp} aria-label="WhatsApp" className="p-3 text-white">
           <MessageCircle className="h-5 w-5" aria-hidden="true" />
         </a>
       </div>
