@@ -23,7 +23,6 @@ export default function SmartImage({ slot, className, sizes = '100vw', dark = fa
       style={{
         position: absolute ? 'absolute' : 'relative',
         aspectRatio: absolute ? undefined : data.ratio,
-        width: absolute ? undefined : '100%',
       }}
     >
       {data.src ? (
