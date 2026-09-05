@@ -10,7 +10,7 @@ export default function WhatsAppBox() {
         <MessageCircle className="h-8 w-8 text-accent-500" aria-hidden="true" />
         <h3 className="font-display text-xl font-extrabold">WhatsApp&apos;tan yazın, hazır olsun</h3>
         <p className="max-w-sm text-white/80">Siparişinizi WhatsApp&apos;tan iletin, vardığınızda hazır bulun.</p>
-        <Button href={siteConfig.social.whatsapp} className="mt-2">
+        <Button href={`https://wa.me/${siteConfig.bufe.whatsapp}`} className="mt-2">
           WhatsApp&apos;tan Yaz
         </Button>
       </div>
