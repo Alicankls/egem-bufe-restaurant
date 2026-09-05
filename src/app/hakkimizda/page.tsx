@@ -26,9 +26,9 @@ export default function AboutPage() {
         <Container className="grid gap-10 lg:grid-cols-[1fr_1.2fr]">
           <div>
             <span className="text-[13px] font-semibold uppercase tracking-[0.12em] text-accent-500">Bizi Tanıyın</span>
-            <h1 className="mt-3 font-display text-[26px] font-extrabold leading-[1.2] text-ink lg:text-[44px]">
+            <h2 className="mt-3 font-display text-[26px] font-extrabold leading-[1.2] text-ink lg:text-[44px]">
               Sanayi bölgesinin güvenilir sofrası
-            </h1>
+            </h2>
           </div>
           <div className="grid gap-6 sm:grid-cols-2">
             <div>
