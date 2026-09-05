@@ -18,7 +18,7 @@ export default function ContactPage() {
   return (
     <div>
       <div className="relative overflow-hidden py-12 pt-28 text-white lg:pt-32">
-        <SmartImage slot="contact.hero" className="absolute inset-0 h-full" dark sizes="100vw" />
+        <SmartImage slot="contact.hero" absolute className="inset-0" dark sizes="100vw" />
         <div className="absolute inset-0 bg-brand-950/75" />
         <Container className="relative z-10">
           <h1 className="font-display text-3xl font-extrabold lg:text-4xl">İletişim</h1>

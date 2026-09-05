@@ -1,3 +1,5 @@
+'use client'
+import { useEffect, useState } from 'react'
 import { Phone, MessageCircle, Navigation } from 'lucide-react'
 import Container from '@/components/ui/Container'
 import Section from '@/components/ui/Section'
@@ -18,7 +20,13 @@ const dayLabels: Record<Weekday, string> = {
 const dayOrder: Weekday[] = ['pazartesi', 'sali', 'carsamba', 'persembe', 'cuma', 'cumartesi', 'pazar']
 
 function HoursTable({ title, hours }: { title: string; hours: BusinessHours }) {
-  const todayKey = getTodayWeekday()
+  const [todayKey, setTodayKey] = useState<Weekday | null>(null)
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setTodayKey(getTodayWeekday())
+  }, [])
+
   return (
     <div>
       <p className="mb-2 text-sm font-semibold text-ink">{title}</p>

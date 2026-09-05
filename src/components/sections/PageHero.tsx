@@ -12,7 +12,7 @@ type PageHeroProps = {
 export default function PageHero({ imageSlot, title, breadcrumbLabel }: PageHeroProps) {
   return (
     <div className="relative flex h-[420px] w-full items-end overflow-hidden">
-      <SmartImage slot={imageSlot} className="absolute inset-0 h-full" dark sizes="100vw" />
+      <SmartImage slot={imageSlot} absolute className="inset-0" dark sizes="100vw" />
       <div className="absolute inset-0 bg-brand-950/55" />
       <Container className="relative z-10 pb-10 text-white">
         <nav aria-label="Breadcrumb" className="mb-3 flex items-center gap-2 text-sm text-white/70">

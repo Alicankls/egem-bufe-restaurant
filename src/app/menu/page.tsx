@@ -22,6 +22,7 @@ export default async function MenuPage({ searchParams }: { searchParams: Promise
 
   return (
     <div className="pb-10 pt-16">
+      <h1 className="sr-only">Menü</h1>
       <MenuTabs active={activeTab} />
       {activeTab === 'restaurant' && <TodaysSpecialBlock />}
       <MenuContent categories={categories} />

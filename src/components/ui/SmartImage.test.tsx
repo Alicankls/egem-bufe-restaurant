@@ -32,4 +32,10 @@ describe('SmartImage', () => {
   it('bilinmeyen slot için hata fırlatır', () => {
     expect(() => render(<SmartImage slot="test.yok" />)).toThrow()
   })
+
+  it('absolute prop true iken kök elemanın inline stili position: absolute olur', () => {
+    const { container } = render(<SmartImage slot="test.filled" absolute />)
+    const root = container.firstChild as HTMLElement
+    expect(root.style.position).toBe('absolute')
+  })
 })

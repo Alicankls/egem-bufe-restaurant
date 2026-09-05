@@ -19,7 +19,7 @@ export default async function QrPage() {
   const svgs = await Promise.all(cards.map((card) => generateQrSvg(`${siteConfig.siteUrl}${card.url}`)))
 
   return (
-    <Container className="py-14">
+    <Container className="pb-14 pt-24">
       <div className="print:hidden">
         <h1 className="font-display text-2xl font-extrabold text-ink">QR Kod Üret ve Yazdır</h1>
         <p className="mt-2 max-w-xl text-ink-soft">

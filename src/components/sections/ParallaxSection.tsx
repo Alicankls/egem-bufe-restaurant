@@ -5,7 +5,7 @@ import SmartImage from '@/components/ui/SmartImage'
 export default function ParallaxSection() {
   return (
     <div className="relative h-[520px] w-full overflow-hidden">
-      <SmartImage slot="home.parallax" className="absolute inset-0 h-full" dark />
+      <SmartImage slot="home.parallax" absolute className="inset-0" dark />
       <div className="absolute inset-0 bg-brand-950/60" />
       <Container className="relative z-10 flex h-full flex-col items-center justify-center gap-4 text-center text-white">
         <h2 className="font-display text-[26px] font-extrabold leading-[1.2] lg:text-[44px]">

@@ -57,9 +57,9 @@ export default function Header() {
       >
         <div className="hidden h-16 items-center px-8 lg:flex">
           <div className="flex flex-1 items-center gap-8">
-            <button aria-label="Ara" className="p-3 text-white">
+            <Link href="/menu" aria-label="Menüde ara" className="p-3 text-white">
               <Search className="h-5 w-5" aria-hidden="true" />
-            </button>
+            </Link>
             <nav className="flex gap-6">
               {primaryNav.map((item) => (
                 <Link key={item.href} href={item.href} className="text-[13px] font-semibold uppercase tracking-[0.04em] text-white">

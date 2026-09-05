@@ -29,6 +29,7 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
       role="dialog"
       aria-modal="true"
       aria-label="Mobil menü"
+      inert={!isOpen ? true : undefined}
       className={cn(
         'fixed inset-0 z-50 flex flex-col bg-brand-950 text-white transition-opacity duration-200',
         isOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'

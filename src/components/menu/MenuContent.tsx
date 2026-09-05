@@ -13,7 +13,10 @@ export default function MenuContent({ categories }: { categories: MenuCategory[]
   return (
     <div>
       <MenuSearch onChange={setQuery} />
-      <CategoryBar categories={categories.map((c) => ({ key: c.key, title: c.title }))} />
+      <CategoryBar
+        categories={categories.map((c) => ({ key: c.key, title: c.title }))}
+        visibleKeys={new Set(filtered.map((c) => c.key))}
+      />
       <div className="px-4">
         {filtered.length === 0 && <p className="py-10 text-center text-sm text-ink-soft">Aramanızla eşleşen ürün bulunamadı.</p>}
         {filtered.map((category) => (

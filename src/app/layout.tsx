@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer'
 import MobileActionBar from '@/components/layout/MobileActionBar'
 import ScrollTop from '@/components/layout/ScrollTop'
 import { siteConfig } from '@/config/site'
+import { imageSlots } from '@/config/images'
 import { getRestaurantJsonLd, getBufeJsonLd } from '@/lib/jsonld'
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -33,6 +34,9 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'tr_TR',
     siteName: siteConfig.brandName,
+    images: imageSlots['og.default'].src
+      ? [{ url: imageSlots['og.default'].src, width: 1200, height: 630, alt: imageSlots['og.default'].alt }]
+      : [],
   },
 }
 

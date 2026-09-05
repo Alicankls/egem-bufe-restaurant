@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+:focus-visible {
+  outline: 2px solid rgb(var(--color-brand-500));
+  outline-offset: 2px;
+}
+
+.bg-brand-950 :focus-visible,
+.bg-brand-900 :focus-visible {
+  outline-color: rgb(var(--color-accent-500));
+}
+
 :root {
   --color-brand-950: 7 33 56;
   --color-brand-900: 10 37 64;
@@ -37,17 +47,6 @@ html {
 body {
   color: rgb(var(--color-ink));
   background-color: #ffffff;
-}
-
-.fade-up {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 200ms ease-out, transform 200ms ease-out;
-}
-
-.fade-up.is-visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 @media print {

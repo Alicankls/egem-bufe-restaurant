@@ -8,16 +8,24 @@ type SmartImageProps = {
   className?: string
   sizes?: string
   dark?: boolean
+  absolute?: boolean
 }
 
-export default function SmartImage({ slot, className, sizes = '100vw', dark = false }: SmartImageProps) {
+export default function SmartImage({ slot, className, sizes = '100vw', dark = false, absolute = false }: SmartImageProps) {
   const data = imageSlots[slot]
   if (!data) {
     throw new Error(`Bilinmeyen görsel slotu: ${slot}`)
   }
 
   return (
-    <div className={cn('relative w-full overflow-hidden', className)} style={{ aspectRatio: data.ratio }}>
+    <div
+      className={cn('overflow-hidden', className)}
+      style={{
+        position: absolute ? 'absolute' : 'relative',
+        aspectRatio: absolute ? undefined : data.ratio,
+        width: absolute ? undefined : '100%',
+      }}
+    >
       {data.src ? (
         <Image src={data.src} alt={data.alt} fill sizes={sizes} priority={data.priority} className="object-cover" />
       ) : (

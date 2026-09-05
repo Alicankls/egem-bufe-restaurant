@@ -1,3 +1,5 @@
+import type { Metadata } from 'next'
+import { siteConfig } from '@/config/site'
 import Hero from '@/components/sections/Hero'
 import Welcome from '@/components/sections/Welcome'
 import SplitPromo from '@/components/sections/SplitPromo'
@@ -11,6 +13,12 @@ import Reviews from '@/components/sections/Reviews'
 import Gallery from '@/components/sections/Gallery'
 import LocationHours from '@/components/sections/LocationHours'
 import QrBand from '@/components/sections/QrBand'
+
+export const metadata: Metadata = {
+  title: `${siteConfig.restaurant.name} & ${siteConfig.bufe.name}`,
+  description: "Çorlu Yeni Sanayi Bölgesi'nde günlük tabldot ve hızlı lezzetler. Masanızdaki QR kodu okutarak menüyü hemen görün.",
+  alternates: { canonical: '/' },
+}
 
 export default function HomePage() {
   return (

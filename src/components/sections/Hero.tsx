@@ -33,15 +33,6 @@ export default function Hero() {
   const [status, setStatus] = useState<{ isOpen: boolean; label: string } | null>(null)
 
   useEffect(() => {
-    function onKeyDown(e: KeyboardEvent) {
-      if (e.key === 'ArrowRight') next()
-      if (e.key === 'ArrowLeft') prev()
-    }
-    window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
-  }, [next, prev])
-
-  useEffect(() => {
     // Genel canlı durum rozeti EGEM Büfe saatlerini baz alır (gün içinde en geç kapanan işletme).
     const now = new Date()
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -65,6 +56,11 @@ export default function Hero() {
     <section
       aria-roledescription="carousel"
       aria-label="Öne çıkan tanıtımlar"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'ArrowRight') next()
+        if (e.key === 'ArrowLeft') prev()
+      }}
       className="relative h-[78vh] max-h-[900px] w-full overflow-hidden lg:h-screen"
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
@@ -75,7 +71,7 @@ export default function Hero() {
           className={cn('absolute inset-0 transition-opacity duration-500', i === index ? 'opacity-100' : 'pointer-events-none opacity-0')}
           aria-hidden={i !== index}
         >
-          <SmartImage slot={s.imageSlot} className="absolute inset-0 h-full w-full" sizes="100vw" dark />
+          <SmartImage slot={s.imageSlot} absolute className="inset-0" sizes="100vw" dark />
           <div className="absolute inset-0 bg-brand-950/55" />
         </div>
       ))}
@@ -113,14 +109,16 @@ export default function Hero() {
         <ChevronRight className="h-9 w-9" aria-hidden="true" />
       </button>
 
-      <div className="absolute bottom-6 right-5 z-10 flex gap-2">
+      <div className="absolute bottom-6 right-5 z-10 flex gap-0">
         {slides.map((s, i) => (
           <button
             key={s.imageSlot}
             onClick={() => goTo(i)}
             aria-label={`${i + 1}. slayta git`}
-            className={cn('h-2.5 w-2.5 rounded-full', i === index ? 'bg-accent-500' : 'bg-white/50')}
-          />
+            className="flex h-11 w-11 items-center justify-center"
+          >
+            <span className={cn('h-2.5 w-2.5 rounded-full', i === index ? 'bg-accent-500' : 'bg-white/50')} />
+          </button>
         ))}
       </div>
     </section>
