@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer'
 import MobileActionBar from '@/components/layout/MobileActionBar'
 import ScrollTop from '@/components/layout/ScrollTop'
 import { siteConfig } from '@/config/site'
+import { getRestaurantJsonLd, getBufeJsonLd } from '@/lib/jsonld'
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin', 'latin-ext'],
@@ -39,6 +40,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="tr" className={`${plusJakartaSans.variable} ${inter.variable}`}>
       <body className="pb-16 font-sans text-ink antialiased lg:pb-0">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getRestaurantJsonLd()) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getBufeJsonLd()) }} />
         <Header />
         <main>{children}</main>
         <Footer />
