@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Search, Phone, Menu as MenuIcon } from 'lucide-react'
+import { Search, Phone, MessageCircle, Menu as MenuIcon } from 'lucide-react'
 import { primaryNav, secondaryNav } from '@/config/nav'
 import { siteConfig } from '@/config/site'
 import SmartImage from '@/components/ui/SmartImage'
@@ -14,6 +14,7 @@ export default function Header() {
   const isHome = pathname === '/'
   const [scrolled, setScrolled] = useState(false)
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const isMenuPage = pathname === '/menu'
 
   useEffect(() => {
     if (!isHome) return
@@ -24,6 +25,24 @@ export default function Header() {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [isHome])
+
+  if (isMenuPage) {
+    return (
+      <header role="banner" className="fixed inset-x-0 top-0 z-40 flex h-16 items-center justify-between bg-brand-950 px-5">
+        <Link href="/" aria-label={siteConfig.brandName}>
+          <SmartImage slot="brand.logoLight" className="h-9 w-[140px]" dark sizes="140px" />
+        </Link>
+        <div className="flex items-center gap-4">
+          <a href={`tel:${siteConfig.restaurant.phone}`} aria-label="Ara" className="text-white">
+            <Phone className="h-5 w-5" aria-hidden="true" />
+          </a>
+          <a href={siteConfig.social.whatsapp} aria-label="WhatsApp" className="text-white">
+            <MessageCircle className="h-5 w-5" aria-hidden="true" />
+          </a>
+        </div>
+      </header>
+    )
+  }
 
   const dark = !isHome || scrolled
 
