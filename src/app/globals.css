@@ -49,3 +49,23 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+
+@media print {
+  header[role='banner'],
+  footer,
+  nav[aria-label='Hızlı işlemler'],
+  button[aria-label='Sayfa başına dön'] {
+    display: none !important;
+  }
+  body {
+    padding-bottom: 0 !important;
+  }
+  .qr-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+}
