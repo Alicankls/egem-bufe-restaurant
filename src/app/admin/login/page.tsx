@@ -1,5 +1,5 @@
 'use client'
-import { useActionState } from 'react'
+import { Suspense, useActionState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import SmartImage from '@/components/ui/SmartImage'
 import { loginAction, type LoginState } from '@/lib/actions/login'
@@ -7,6 +7,14 @@ import { loginAction, type LoginState } from '@/lib/actions/login'
 const initialState: LoginState = {}
 
 export default function LoginPage() {
+  return (
+    <Suspense fallback={null}>
+      <LoginForm />
+    </Suspense>
+  )
+}
+
+function LoginForm() {
   const searchParams = useSearchParams()
   const callbackUrl = searchParams.get('callbackUrl') ?? ''
   const [state, formAction, isPending] = useActionState(loginAction, initialState)
