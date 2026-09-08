@@ -1,11 +1,21 @@
 'use client'
 import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { Menu as MenuIcon, X } from 'lucide-react'
 import Sidebar from './Sidebar'
 import { cn } from '@/lib/utils'
 
 export default function AdminShell({ userEmail, children }: { userEmail: string; children: React.ReactNode }) {
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const pathname = usePathname()
+  const [prevPathname, setPrevPathname] = useState(pathname)
+
+  // Rota değiştiğinde mobil çekmeceyi kapat (render sırasında state ayarlama —
+  // useEffect içinde senkron setState'ten kaçınmak için React'in önerdiği desen).
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname)
+    setDrawerOpen(false)
+  }
 
   return (
     <div className="flex min-h-screen bg-brand-50">
