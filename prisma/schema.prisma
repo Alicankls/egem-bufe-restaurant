@@ -1,0 +1,103 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Business {
+  RESTAURANT
+  BUFE
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String?
+  role         String   @default("ADMIN")
+  createdAt    DateTime @default(now())
+}
+
+model Category {
+  id        String    @id @default(cuid())
+  business  Business
+  name      String
+  slug      String
+  sortOrder Int       @default(0)
+  isActive  Boolean   @default(true)
+  products  Product[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@unique([business, slug])
+  @@index([business, sortOrder])
+}
+
+model Product {
+  id               String   @id @default(cuid())
+  business         Business
+  name             String
+  code             String?
+  price            Decimal  @db.Decimal(10, 2)
+  calories         Int?
+  shortDescription String?
+  longDescription  String?
+  allergens        String?
+  imageUrl         String?
+  isActive         Boolean  @default(true)
+  isSoldOut        Boolean  @default(false)
+  isDailyMenu      Boolean  @default(false)
+  sortOrder        Int      @default(0)
+  categoryId       String
+  category         Category @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([categoryId, sortOrder])
+  @@index([business, isDailyMenu])
+}
+
+model DayHours {
+  id         String   @id @default(cuid())
+  settingsId String
+  settings   Settings @relation(fields: [settingsId], references: [id])
+  business   Business
+  weekday    Int
+  isClosed   Boolean  @default(false)
+  openTime   String?
+  closeTime  String?
+
+  @@unique([settingsId, business, weekday])
+}
+
+model Settings {
+  id                 String     @id @default("singleton")
+  brandName          String     @default("EGEM")
+  tagline            String?
+  aboutText          String?
+
+  restaurantName     String     @default("EGEM-TRAK Restaurant")
+  restaurantPhone    String?
+  restaurantWhatsapp String?
+
+  bufeName           String     @default("EGEM Büfe")
+  bufePhone          String?
+  bufeWhatsapp       String?
+
+  address            String?
+  mapEmbedUrl        String?
+  directionsUrl      String?
+
+  instagram          String?
+  facebook           String?
+  youtube            String?
+
+  showPrices         Boolean    @default(true)
+  themeColor         String     @default("#1A73C7")
+
+  hours              DayHours[]
+  updatedAt          DateTime   @updatedAt
+}
