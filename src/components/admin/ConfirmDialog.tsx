@@ -32,10 +32,10 @@ export default function ConfirmDialog({
         <h2 className="font-display text-lg font-bold text-ink">{title}</h2>
         <p className="mt-2 text-sm text-ink-soft">{description}</p>
         <div className="mt-6 flex justify-end gap-3">
-          <button onClick={onCancel} className="min-h-[44px] rounded-lg border border-line px-4 text-sm font-semibold text-ink">
+          <button type="button" onClick={onCancel} className="min-h-[44px] rounded-lg border border-line px-4 text-sm font-semibold text-ink">
             Vazgeç
           </button>
-          <button onClick={onConfirm} className="min-h-[44px] rounded-lg bg-red-600 px-4 text-sm font-semibold text-white">
+          <button type="button" onClick={onConfirm} className="min-h-[44px] rounded-lg bg-red-600 px-4 text-sm font-semibold text-white">
             {confirmLabel}
           </button>
         </div>

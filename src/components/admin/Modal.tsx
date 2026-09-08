@@ -34,7 +34,7 @@ export default function Modal({
       <div onClick={(e) => e.stopPropagation()} className="w-full max-w-md rounded-xl bg-white p-6 shadow-md">
         <div className="mb-4 flex items-center justify-between">
           <h2 className="font-display text-lg font-bold text-ink">{title}</h2>
-          <button onClick={onClose} aria-label="Kapat" className="flex h-11 w-11 items-center justify-center text-ink-soft">
+          <button type="button" onClick={onClose} aria-label="Kapat" className="flex h-11 w-11 items-center justify-center text-ink-soft">
             <X className="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
