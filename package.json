@@ -11,7 +11,8 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
-    "db:seed": "prisma db seed"
+    "db:seed": "prisma db seed",
+    "admin:reset": "tsx scripts/reset-admin.ts"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",

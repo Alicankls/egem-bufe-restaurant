@@ -22,6 +22,65 @@ npm test        # Vitest test paketi
 npx tsc --noEmit  # TypeScript tip kontrolü
 ```
 
+## Admin Paneli Kurulumu
+
+Restaurant ve Büfe menülerini, günün menüsünü ve işletme ayarlarını yönetmek için `/admin` altında bir yönetim paneli bulunur.
+
+### 1. Veritabanı (Neon)
+
+1. [neon.tech](https://neon.tech) üzerinde ücretsiz bir hesap açın ve yeni bir proje oluşturun.
+2. Proje panelinden "Connection string" değerini kopyalayın (`postgresql://...` ile başlar).
+3. `.env.example` dosyasını `.env` olarak kopyalayın ve `DATABASE_URL` değerine yapıştırın.
+
+### 2. Ortam değişkenleri
+
+`.env` dosyasında şu değerleri doldurun:
+
+- `DATABASE_URL` — Neon connection string
+- `AUTH_SECRET` — `npx auth secret` komutuyla üretilebilir
+- `NEXTAUTH_URL` — geliştirmede `http://localhost:3000`, production'da gerçek domain
+- `BLOB_READ_WRITE_TOKEN` — Vercel Blob token (aşağıda)
+- `ADMIN_EMAIL` / `ADMIN_PASSWORD` — ilk admin kullanıcısının giriş bilgileri (yalnızca `prisma db seed` çalıştırılırken kullanılır)
+
+### 3. Şema ve seed verisi
+
+```bash
+npx prisma migrate dev --name init
+npx prisma db seed
+```
+
+Bu komutlar veritabanı şemasını oluşturur ve mevcut menü verisini (Restaurant + Büfe kategorileri/ürünleri), varsayılan işletme ayarlarını ve `ADMIN_EMAIL`/`ADMIN_PASSWORD` ile bir admin kullanıcısı ekler.
+
+### 4. Vercel Blob (görsel yükleme)
+
+1. Vercel projenizin Storage sekmesinden bir Blob store oluşturun.
+2. Üretilen `BLOB_READ_WRITE_TOKEN` değerini `.env`'e (ve Vercel proje ayarlarındaki Environment Variables'a) ekleyin.
+
+### 5. Girişi test edin
+
+```bash
+npm run dev
+```
+
+`http://localhost:3000/admin/login` adresine gidin, `.env`'deki `ADMIN_EMAIL`/`ADMIN_PASSWORD` ile giriş yapın.
+
+### 6. Admin şifresini sıfırlama
+
+Admin kullanıcısının şifresini unuttuysanız veya değiştirmek isterseniz:
+
+```bash
+npm run admin:reset -- admin@egemtrak.com yeni-guclu-sifre
+```
+
+Bu komut mevcut kullanıcıyı günceller veya (e-posta kayıtlı değilse) yeni
+bir admin kullanıcısı oluşturur. `prisma/seed.ts`'in aksine, bu script'i
+istediğiniz zaman tekrar çalıştırabilirsiniz — yalnızca belirttiğiniz
+kullanıcıyı etkiler.
+
+### 7. Vercel'e deploy
+
+Vercel proje ayarlarında şu environment variable'ları tanımlayın: `DATABASE_URL`, `AUTH_SECRET`, `NEXTAUTH_URL` (production domain), `BLOB_READ_WRITE_TOKEN`. Deploy sonrası, gerekiyorsa `npx prisma migrate deploy` production veritabanına karşı çalıştırılır.
+
 ## Görsel Ekleme (3 Adım)
 
 Site şu an görselsiz kurulmuştur ve markalı placeholder'larla profesyonel görünür. Bir görsel eklemek için:
