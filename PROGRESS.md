@@ -18,7 +18,7 @@ Bu dosya, admin paneli implementasyonunun neresinde olduğumuzu takip eder. Otur
 4. [x] Admin layout + sidebar + iki işletme arası geçiş (nav grupları) — **TAMAMLANDI** (Plan Task 6, 8)
 5. [x] Dashboard (Restaurant + Büfe) — **TAMAMLANDI** (Plan Task 7)
 6. [x] Kategoriler — **TAMAMLANDI** (Plan Task 9-10, commits b2e2a0c..9cc1669, review + 1 fix round temiz)
-7. [ ] Ürünler listesi + arama/filtre + hızlı aksiyonlar (Plan Task 11-12) — **İŞLEMDE**: Task 11 (sorgu/mutasyon katmanı) dispatch edildi
+7. [x] Ürünler listesi + arama/filtre + hızlı aksiyonlar — **TAMAMLANDI** (Plan Task 11-12, commits b99d361..fbb0dfb). Task 12'de kullanıcının ekran spec'ine göre plan'ın orijinal tablosu genişletildi (Görsel/Kod/Durum rozeti/sayfalama), bkz. `.superpowers/sdd/.../task-12-brief-override.md`.
 8. [ ] Ürün ekle/düzenle + görsel yükleme — Vercel Blob (Plan Task 13)
 9. [ ] Günün Menüsü (Plan Task 14)
 10. [ ] Ayarlar (Plan Task 15)
@@ -34,4 +34,4 @@ Bu dosya, admin paneli implementasyonunun neresinde olduğumuzu takip eder. Otur
 
 ## Sıradaki Adım
 
-Task 11 (Ürün sorgu/mutasyon katmanı + görsel yükleme) implementer'ının sonucunu bekle → review → Task 12 (Ürünler listesi sayfası)'ye geç.
+Task 13'e geç (Ürün ekle/düzenle formu + görsel yükleme arayüzü).
