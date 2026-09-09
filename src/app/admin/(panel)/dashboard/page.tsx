@@ -30,11 +30,10 @@ export default async function DashboardPage() {
 
       <section className="mt-8">
         <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-ink-soft">Büfe</h2>
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-5">
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
           <StatCard label="Toplam Ürün" value={bufeStats.totalProducts} icon={Package} href="/admin/bufe/urunler" />
           <StatCard label="Aktif Ürün" value={bufeStats.activeProducts} icon={CheckCircle2} href="/admin/bufe/urunler" />
           <StatCard label="Tükendi" value={bufeStats.soldOutProducts} icon={XCircle} href="/admin/bufe/urunler" />
-          <StatCard label="Günün Menüsü" value={bufeStats.dailyMenuProducts} icon={CalendarCheck} href="/admin/bufe/gunun-menusu" />
           <StatCard label="Kategori" value={bufeStats.totalCategories} icon={Tag} href="/admin/bufe/kategoriler" />
         </div>
       </section>

@@ -12,8 +12,8 @@ import type { Business } from '@prisma/client'
 
 const PAGE_SIZE = 20
 
-function StatusBadge({ product }: { product: ProductWithCategory }) {
-  if (product.isDailyMenu) {
+function StatusBadge({ product, business }: { product: ProductWithCategory; business: Business }) {
+  if (business === 'RESTAURANT' && product.isDailyMenu) {
     return (
       <span className="inline-flex rounded-full bg-brand-500 px-2.5 py-1 text-[11px] font-semibold text-white">
         Günün Menüsü
@@ -179,7 +179,7 @@ export default function ProductsPage({
                 <td className="px-4 py-3 text-ink-soft">{product.code || '—'}</td>
                 <td className="px-4 py-3 text-ink-soft">{formatPrice(Number(product.price))}</td>
                 <td className="px-4 py-3">
-                  <StatusBadge product={product} />
+                  <StatusBadge product={product} business={business} />
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex flex-wrap items-center gap-2">
@@ -189,12 +189,14 @@ export default function ProductsPage({
                     >
                       {product.isSoldOut ? 'Satışa Aç' : 'Tükendi'}
                     </button>
-                    <button
-                      onClick={() => handleToggle(product, 'isDailyMenu', !product.isDailyMenu)}
-                      className="min-h-[44px] rounded-lg px-2 text-xs font-semibold text-ink-soft hover:text-ink"
-                    >
-                      {product.isDailyMenu ? 'Menüden Çıkar' : 'Günün Menüsü'}
-                    </button>
+                    {business === 'RESTAURANT' && (
+                      <button
+                        onClick={() => handleToggle(product, 'isDailyMenu', !product.isDailyMenu)}
+                        className="min-h-[44px] rounded-lg px-2 text-xs font-semibold text-ink-soft hover:text-ink"
+                      >
+                        {product.isDailyMenu ? 'Menüden Çıkar' : 'Günün Menüsü'}
+                      </button>
+                    )}
                     <Link
                       href={`${basePath}/urunler/${product.id}`}
                       aria-label={`${product.name} düzenle`}

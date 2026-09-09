@@ -250,13 +250,15 @@ export default function ProductForm({
             </div>
             <Toggle checked={isSoldOut} onChange={setIsSoldOut} label="Tükendi" />
           </div>
-          <div className="flex items-center justify-between gap-3">
-            <div>
-              <p className="text-sm font-medium text-ink">Günün Menüsü</p>
-              <p className="text-xs text-ink-soft">Öne çıkan bölümde listelenir.</p>
+          {business === 'RESTAURANT' && (
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <p className="text-sm font-medium text-ink">Günün Menüsü</p>
+                <p className="text-xs text-ink-soft">Öne çıkan bölümde listelenir.</p>
+              </div>
+              <Toggle checked={isDailyMenu} onChange={setIsDailyMenu} label="Günün Menüsü" />
             </div>
-            <Toggle checked={isDailyMenu} onChange={setIsDailyMenu} label="Günün Menüsü" />
-          </div>
+          )}
         </div>
 
         <div className="flex flex-col gap-2 rounded-xl bg-white p-6 shadow-sm">

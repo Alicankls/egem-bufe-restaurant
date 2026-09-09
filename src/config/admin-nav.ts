@@ -22,7 +22,6 @@ export const adminNav: AdminNavEntry[] = [
     items: [
       { label: 'Kategoriler', href: '/admin/bufe/kategoriler', icon: 'tag' },
       { label: 'Ürünler', href: '/admin/bufe/urunler', icon: 'box' },
-      { label: 'Günün Menüsü', href: '/admin/bufe/gunun-menusu', icon: 'calendar' },
     ],
   },
   { type: 'link', label: 'Ayarlar', href: '/admin/settings', icon: 'settings' },
