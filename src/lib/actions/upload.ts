@@ -18,13 +18,18 @@ export async function uploadProductImage(formData: FormData): Promise<{ url?: st
   }
 
   const buffer = Buffer.from(await file.arrayBuffer())
-  const resized = await sharp(buffer)
-    .resize(1200, 1200, { fit: 'inside', withoutEnlargement: true })
-    .webp({ quality: 82 })
-    .toBuffer()
 
-  const filename = `products/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.webp`
-  const blob = await put(filename, resized, { access: 'public', contentType: 'image/webp' })
+  try {
+    const resized = await sharp(buffer)
+      .resize(1200, 1200, { fit: 'inside', withoutEnlargement: true })
+      .webp({ quality: 82 })
+      .toBuffer()
 
-  return { url: blob.url }
+    const filename = `products/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.webp`
+    const blob = await put(filename, resized, { access: 'public', contentType: 'image/webp' })
+
+    return { url: blob.url }
+  } catch {
+    return { error: 'Görsel işlenirken bir hata oluştu.' }
+  }
 }
