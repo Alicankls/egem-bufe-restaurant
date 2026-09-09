@@ -20,7 +20,7 @@ const productSchema = z.object({
   isActive: z
     .string()
     .optional()
-    .transform((v) => v === 'true'),
+    .transform((v) => v !== 'false'),
   isSoldOut: z
     .string()
     .optional()

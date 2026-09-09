@@ -211,7 +211,7 @@ export default function ProductForm({
                 type="button"
                 onClick={() => setImageUrl('')}
                 aria-label="Görseli kaldır"
-                className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-ink/70 text-white hover:bg-ink"
+                className="absolute right-2 top-2 flex h-11 w-11 items-center justify-center rounded-full bg-ink/70 text-white hover:bg-ink"
               >
                 <X className="h-4 w-4" aria-hidden="true" />
               </button>
