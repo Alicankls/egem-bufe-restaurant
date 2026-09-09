@@ -34,12 +34,16 @@ Bu dosya, admin paneli implementasyonunun neresinde olduğumuzu takip eder. Otur
 - **`DATABASE_URL` hâlâ yer tutucu** — gerçek bir Neon bağlantısı sağlanana kadar migration/seed canlı DB'ye karşı hiç çalıştırılmadı. Kod tarafı `tsc`/`lint`/`build` ile doğrulanıyor.
 - **2026-09-09 keşfi:** Bu worktree, önceki bir oturumdan (session kesintiye uğramış) kalma — Task 1-9 tam SDD disipliniyle (review + ledger) tamamlanmış, Task 10 kod olarak yazılmış ama commit edilmemiş halde bulundu. Kontrolör (bu oturum) Task 10'u doğrulayıp commit etti (`bddba2d`) ve review'a gönderdi. Aynı zamanda `master` branch'inde bağımsız olarak başlatılan mükerrer bir Faz 1 (Prisma) çalışması bulunup geri alındı (`git reset --hard`) — o iş burada zaten mevcuttu.
 
-## Whole-branch final review — TAMAMLANDI (bulgularla)
+## Whole-branch final review — TAMAMLANDI
 
-Final review (opus) 3 Kritik + 6 Önemli + 15 Küçük bulgu buldu — en önemlisi: admin sayfaları public sitenin header/footer'ının içinde render oluyordu, Kategoriler sayfasında ekleme/sıralama ekranda görünmüyordu, hiçbir Server Action oturum kontrolü yapmıyordu. Tek düzeltme dalgası dispatch edildi (opus rate limit'e takıldı ama tüm dosya değişiklikleri tamamlanmıştı — kontrolör devraldı, doğruladı, commit etti: `748f070`). Şu an scoped re-review bekleniyor.
+Final review (opus) 3 Kritik + 6 Önemli + 15 Küçük bulgu buldu — en önemlisi: admin sayfaları public sitenin header/footer'ının içinde render oluyordu (route group ayrımı yoktu), Kategoriler sayfasında ekleme/sıralama ekranda görünmüyordu, hiçbir Server Action oturum kontrolü yapmıyordu (proxy sadece sayfa render'ını koruyordu). Tek düzeltme dalgası dispatch edildi ve commit edildi (`748f070`), scoped re-review temiz döndü: 10/10 bulgu giderildi, yeni regresyon yok.
+
+**PLAN TAMAMEN BİTTİ.** 16 task + final whole-branch review + 1 düzeltme dalgası, hepsi kendi review'undan geçti. Sıradaki adım `superpowers:finishing-a-development-branch` — bu branch'in `master`'a nasıl entegre edileceğine kullanıcı karar verecek.
+
+**Not:** Bu dosya (`PROGRESS.md`) bir worktree süreç günlüğüdür ("bu iş `master`'da değil..." notu artık geçerli değil merge sonrası). Merge sırasında ya silinmeli ya da worktree'ye özgü dille güncellenmelidir.
 
 ## Sıradaki Adım
 
-Scoped re-review sonucu → temizse `superpowers:finishing-a-development-branch` ile bu branch'i `master`'a entegre etme kararı (kullanıcıya sorulacak: merge mi, PR mı).
+`superpowers:finishing-a-development-branch` çağrılacak.
 
 **ÖNEMLİ — DATABASE_URL hâlâ yer tutucu.** Gerçek bir Neon bağlantısı sağlanmadan: migration hiç uygulanmadı, seed hiç çalıştırılmadı, uygulama gerçek veriyle hiç test edilmedi. Kod tarafı (`tsc`/`lint`/`vitest`/`build`) tamamen temiz ama bu, çalışan bir admin paneli garantisi değil — kullanıcı bir Neon DB kurup `.env`'i doldurunca `npx prisma migrate dev --name init && npm run db:seed` çalıştırılmalı ve panel gerçek tarayıcıda uçtan uca test edilmeli.
