@@ -1,5 +1,6 @@
 'use client'
 import { useState, useTransition } from 'react'
+import { useRouter } from 'next/navigation'
 import { ArrowUp, ArrowDown, Pencil, Trash2, Plus } from 'lucide-react'
 import { toast } from 'sonner'
 import Modal from './Modal'
@@ -28,6 +29,7 @@ export default function CategoriesPage({
   const [deletingCategory, setDeletingCategory] = useState<CategoryWithCount | null>(null)
   const [formError, setFormError] = useState<string | undefined>()
   const [isPending, startTransition] = useTransition()
+  const router = useRouter()
 
   function closeModal() {
     setModalMode(null)
@@ -47,11 +49,10 @@ export default function CategoriesPage({
       }
       toast.success(editingCategory ? 'Kategori güncellendi.' : 'Kategori eklendi.')
       closeModal()
-      // Sunucu Server Action içinde revalidatePath çağırdığı için Next.js
-      // bir sonraki navigasyonda güncel veriyi getirir; anlık local state'i
-      // de senkron tutmak için burada window.location yerine basit bir
-      // optimistic ekleme/güncelleme yapılır.
-      window.location.reload()
+      // Server Action zaten revalidatePath çağırıyor; router.refresh() sayfayı
+      // yeniden yüklemeden güncel sunucu verisini getirir, böylece toast
+      // görünür kalır.
+      router.refresh()
     })
   }
 
@@ -83,8 +84,12 @@ export default function CategoriesPage({
 
   function handleMove(category: CategoryWithCount, direction: 'up' | 'down') {
     startTransition(async () => {
-      await moveCategory(category.id, direction)
-      window.location.reload()
+      const result = await moveCategory(category.id, direction)
+      if (result.error) {
+        toast.error(result.error)
+        return
+      }
+      router.refresh()
     })
   }
 
@@ -125,7 +130,7 @@ export default function CategoriesPage({
                       onClick={() => handleMove(category, 'up')}
                       disabled={index === 0 || isPending}
                       aria-label="Yukarı taşı"
-                      className="flex h-8 w-8 items-center justify-center rounded text-ink-soft disabled:opacity-30"
+                      className="flex h-11 w-11 items-center justify-center rounded text-ink-soft disabled:opacity-30"
                     >
                       <ArrowUp className="h-4 w-4" aria-hidden="true" />
                     </button>
@@ -133,7 +138,7 @@ export default function CategoriesPage({
                       onClick={() => handleMove(category, 'down')}
                       disabled={index === categories.length - 1 || isPending}
                       aria-label="Aşağı taşı"
-                      className="flex h-8 w-8 items-center justify-center rounded text-ink-soft disabled:opacity-30"
+                      className="flex h-11 w-11 items-center justify-center rounded text-ink-soft disabled:opacity-30"
                     >
                       <ArrowDown className="h-4 w-4" aria-hidden="true" />
                     </button>
