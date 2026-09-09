@@ -21,8 +21,8 @@ Bu dosya, admin paneli implementasyonunun neresinde olduğumuzu takip eder. Otur
 7. [x] Ürünler listesi + arama/filtre + hızlı aksiyonlar — **TAMAMLANDI** (Plan Task 11-12, commits b99d361..fbb0dfb). Task 12'de kullanıcının ekran spec'ine göre plan'ın orijinal tablosu genişletildi (Görsel/Kod/Durum rozeti/sayfalama), bkz. `.superpowers/sdd/.../task-12-brief-override.md`.
 8. [x] Ürün ekle/düzenle + görsel yükleme — Vercel Blob — **TAMAMLANDI** (Plan Task 13, commits d43244a..bed8b1d). Kullanıcı spec'ine göre genişletildi: Durum toggle'ları (Aktif/Pasif, Tükendi, Günün Menüsü), Sıralama alanı, gerçek dropzone UI — bunlar için Task 11'in `products.ts`'i katkısal (additive) olarak genişletildi. Bkz. `.superpowers/sdd/.../task-13-brief-override.md`.
 9. [x] Günün Menüsü — **TAMAMLANDI** (Plan Task 14, commits 5bee8f8..926447f, review temiz). Kullanıcı spec'ine göre genişletildi: Tükendi toggle + rozet, "Menüyü Görüntüle" dış bağlantı, tam metin eşleşmesi. Büfe açıklaması bilinçli olarak plan'ın metnini korudu (Büfe seçimi canlı sitede gösterilmiyor — bkz. ledger ruling). Bkz. `.superpowers/sdd/.../task-14-brief-override.md`.
-10. [ ] Ayarlar (Plan Task 15)
-11. [ ] `scripts/reset-admin.ts` + README + son doğrulama (Plan Task 16+)
+10. [x] Ayarlar — **TAMAMLANDI** (Plan Task 15, commits 309c40a..6c8013d, review temiz). Kullanıcı spec'ine göre 6 delta uygulandı (başlık/açıklama, İşletme Adı etiketi, WhatsApp placeholder'ları, sosyal link URL doğrulaması, senkron hex+color-picker tema girişi, `revalidatePath('/', 'layout')`). TikTok ve Logo URL alanları **bilinçli olarak eklenmedi** — şema/mimari kapsamı dışında, bkz. ledger ruling. Bkz. `.superpowers/sdd/.../task-15-brief-override.md`.
+11. [ ] `scripts/reset-admin.ts` + README + son doğrulama (Plan Task 16)
 
 ## Önemli notlar / kararlar
 
@@ -34,4 +34,4 @@ Bu dosya, admin paneli implementasyonunun neresinde olduğumuzu takip eder. Otur
 
 ## Sıradaki Adım
 
-Task 15'e geç (Ayarlar sayfası).
+Task 16'ya geç (README güncellemesi + final doğrulama). Ayrıca kullanıcının açıkça istediği `scripts/reset-admin.ts` (şifre sıfırlama script'i — Task 16'da yoksa ayrıca eklenecek).
