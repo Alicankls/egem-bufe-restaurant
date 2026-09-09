@@ -19,7 +19,7 @@ Bu dosya, admin paneli implementasyonunun neresinde olduğumuzu takip eder. Otur
 5. [x] Dashboard (Restaurant + Büfe) — **TAMAMLANDI** (Plan Task 7)
 6. [x] Kategoriler — **TAMAMLANDI** (Plan Task 9-10, commits b2e2a0c..9cc1669, review + 1 fix round temiz)
 7. [x] Ürünler listesi + arama/filtre + hızlı aksiyonlar — **TAMAMLANDI** (Plan Task 11-12, commits b99d361..fbb0dfb). Task 12'de kullanıcının ekran spec'ine göre plan'ın orijinal tablosu genişletildi (Görsel/Kod/Durum rozeti/sayfalama), bkz. `.superpowers/sdd/.../task-12-brief-override.md`.
-8. [ ] Ürün ekle/düzenle + görsel yükleme — Vercel Blob (Plan Task 13)
+8. [x] Ürün ekle/düzenle + görsel yükleme — Vercel Blob — **TAMAMLANDI** (Plan Task 13, commits d43244a..bed8b1d). Kullanıcı spec'ine göre genişletildi: Durum toggle'ları (Aktif/Pasif, Tükendi, Günün Menüsü), Sıralama alanı, gerçek dropzone UI — bunlar için Task 11'in `products.ts`'i katkısal (additive) olarak genişletildi. Bkz. `.superpowers/sdd/.../task-13-brief-override.md`.
 9. [ ] Günün Menüsü (Plan Task 14)
 10. [ ] Ayarlar (Plan Task 15)
 11. [ ] `scripts/reset-admin.ts` + README + son doğrulama (Plan Task 16+)
@@ -34,4 +34,4 @@ Bu dosya, admin paneli implementasyonunun neresinde olduğumuzu takip eder. Otur
 
 ## Sıradaki Adım
 
-Task 13'e geç (Ürün ekle/düzenle formu + görsel yükleme arayüzü).
+Task 14'e geç (Günün Menüsü sayfası).
