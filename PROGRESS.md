@@ -22,7 +22,9 @@ Bu dosya, admin paneli implementasyonunun neresinde olduğumuzu takip eder. Otur
 8. [x] Ürün ekle/düzenle + görsel yükleme — Vercel Blob — **TAMAMLANDI** (Plan Task 13, commits d43244a..bed8b1d). Kullanıcı spec'ine göre genişletildi: Durum toggle'ları (Aktif/Pasif, Tükendi, Günün Menüsü), Sıralama alanı, gerçek dropzone UI — bunlar için Task 11'in `products.ts`'i katkısal (additive) olarak genişletildi. Bkz. `.superpowers/sdd/.../task-13-brief-override.md`.
 9. [x] Günün Menüsü — **TAMAMLANDI** (Plan Task 14, commits 5bee8f8..926447f, review temiz). Kullanıcı spec'ine göre genişletildi: Tükendi toggle + rozet, "Menüyü Görüntüle" dış bağlantı, tam metin eşleşmesi. Büfe açıklaması bilinçli olarak plan'ın metnini korudu (Büfe seçimi canlı sitede gösterilmiyor — bkz. ledger ruling). Bkz. `.superpowers/sdd/.../task-14-brief-override.md`.
 10. [x] Ayarlar — **TAMAMLANDI** (Plan Task 15, commits 309c40a..6c8013d, review temiz). Kullanıcı spec'ine göre 6 delta uygulandı (başlık/açıklama, İşletme Adı etiketi, WhatsApp placeholder'ları, sosyal link URL doğrulaması, senkron hex+color-picker tema girişi, `revalidatePath('/', 'layout')`). TikTok ve Logo URL alanları **bilinçli olarak eklenmedi** — şema/mimari kapsamı dışında, bkz. ledger ruling. Bkz. `.superpowers/sdd/.../task-15-brief-override.md`.
-11. [ ] `scripts/reset-admin.ts` + README + son doğrulama (Plan Task 16)
+11. [x] `scripts/reset-admin.ts` + README + son doğrulama — **TAMAMLANDI** (Plan Task 16, commits a0537c0..bdb68c9, review temiz). `npx tsc --noEmit`, `npm run lint`, `npx vitest run` (56/56 test), `npm run build` hepsi temiz. README'ye admin kurulum rehberi + şifre sıfırlama adımı eklendi.
+
+**TÜM 11 FAZ TAMAMLANDI.** Plan'ın 16 task'ının hepsi review'dan geçti (bazıları fix-round ile). Sırada: son whole-branch review.
 
 ## Önemli notlar / kararlar
 
@@ -34,4 +36,6 @@ Bu dosya, admin paneli implementasyonunun neresinde olduğumuzu takip eder. Otur
 
 ## Sıradaki Adım
 
-Task 16'ya geç (README güncellemesi + final doğrulama). Ayrıca kullanıcının açıkça istediği `scripts/reset-admin.ts` (şifre sıfırlama script'i — Task 16'da yoksa ayrıca eklenecek).
+Whole-branch final review (en yetenekli modelle) → bulgular varsa tek düzeltme dalgası + scoped re-review → `superpowers:finishing-a-development-branch` ile bu branch'i `master`'a entegre etme kararı (kullanıcıya sorulacak: merge mi, PR mı).
+
+**ÖNEMLİ — DATABASE_URL hâlâ yer tutucu.** Gerçek bir Neon bağlantısı sağlanmadan: migration hiç uygulanmadı, seed hiç çalıştırılmadı, uygulama gerçek veriyle hiç test edilmedi. Kod tarafı (`tsc`/`lint`/`vitest`/`build`) tamamen temiz ama bu, çalışan bir admin paneli garantisi değil — kullanıcı bir Neon DB kurup `.env`'i doldurunca `npx prisma migrate dev --name init && npm run db:seed` çalıştırılmalı ve panel gerçek tarayıcıda uçtan uca test edilmeli.
