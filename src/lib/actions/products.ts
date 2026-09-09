@@ -17,6 +17,22 @@ const productSchema = z.object({
   allergens: z.string().trim().max(300, 'Alerjen bilgisi çok uzun.').optional().or(z.literal('')),
   categoryId: z.string().min(1, 'Kategori seçilmelidir.'),
   imageUrl: z.string().trim().optional().or(z.literal('')),
+  isActive: z
+    .string()
+    .optional()
+    .transform((v) => v === 'true'),
+  isSoldOut: z
+    .string()
+    .optional()
+    .transform((v) => v === 'true'),
+  isDailyMenu: z
+    .string()
+    .optional()
+    .transform((v) => v === 'true'),
+  sortOrder: z.preprocess(
+    (val) => (val === '' || val === null || val === undefined ? undefined : val),
+    z.coerce.number().int().nonnegative().optional()
+  ),
 })
 
 function pathsFor(business: Business) {
@@ -36,10 +52,14 @@ export async function createProduct(business: Business, formData: FormData): Pro
     return { error: 'Kategori bu işletmeye ait değil.' }
   }
 
-  const maxSort = await db.product.aggregate({
-    where: { categoryId: parsed.data.categoryId },
-    _max: { sortOrder: true },
-  })
+  let sortOrder = parsed.data.sortOrder
+  if (sortOrder === undefined) {
+    const maxSort = await db.product.aggregate({
+      where: { categoryId: parsed.data.categoryId },
+      _max: { sortOrder: true },
+    })
+    sortOrder = (maxSort._max.sortOrder ?? -1) + 1
+  }
 
   await db.product.create({
     data: {
@@ -53,7 +73,10 @@ export async function createProduct(business: Business, formData: FormData): Pro
       allergens: parsed.data.allergens || null,
       imageUrl: parsed.data.imageUrl || null,
       categoryId: parsed.data.categoryId,
-      sortOrder: (maxSort._max.sortOrder ?? -1) + 1,
+      isActive: parsed.data.isActive,
+      isSoldOut: parsed.data.isSoldOut,
+      isDailyMenu: parsed.data.isDailyMenu,
+      sortOrder,
     },
   })
 
@@ -87,6 +110,10 @@ export async function updateProduct(id: string, formData: FormData): Promise<{ e
       allergens: parsed.data.allergens || null,
       imageUrl: parsed.data.imageUrl || null,
       categoryId: parsed.data.categoryId,
+      isActive: parsed.data.isActive,
+      isSoldOut: parsed.data.isSoldOut,
+      isDailyMenu: parsed.data.isDailyMenu,
+      sortOrder: parsed.data.sortOrder ?? existing.sortOrder,
     },
   })
 
