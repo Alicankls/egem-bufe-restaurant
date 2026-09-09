@@ -51,6 +51,15 @@ npx prisma db seed
 
 Bu komutlar veritabanı şemasını oluşturur ve mevcut menü verisini (Restaurant + Büfe kategorileri/ürünleri), varsayılan işletme ayarlarını ve `ADMIN_EMAIL`/`ADMIN_PASSWORD` ile bir admin kullanıcısı ekler.
 
+> **Önemli — ilk migration henüz oluşturulmadı.** Depoda `prisma/migrations/`
+> klasörü **yoktur**; bu branch gerçek bir `DATABASE_URL` bağlantısına sahip
+> olmadığı için ilk migration üretilememiştir. Yukarıdaki
+> `npx prisma migrate dev --name init` komutunu **bir kez**, gerçek bir Postgres
+> bağlantısına (ör. Neon dev branch'i) karşı lokalde çalıştırın ve oluşan
+> `prisma/migrations/` dosyalarını commit'leyin. Bu adım tamamlanmadan
+> production'da `npx prisma migrate deploy` çalışmaz (uygulanacak migration
+> bulunmadığı için hiçbir şey yapmaz).
+
 ### 4. Vercel Blob (görsel yükleme)
 
 1. Vercel projenizin Storage sekmesinden bir Blob store oluşturun.
@@ -79,7 +88,7 @@ kullanıcıyı etkiler.
 
 ### 7. Vercel'e deploy
 
-Vercel proje ayarlarında şu environment variable'ları tanımlayın: `DATABASE_URL`, `AUTH_SECRET`, `NEXTAUTH_URL` (production domain), `BLOB_READ_WRITE_TOKEN`. Deploy sonrası, gerekiyorsa `npx prisma migrate deploy` production veritabanına karşı çalıştırılır.
+Vercel proje ayarlarında şu environment variable'ları tanımlayın: `DATABASE_URL`, `AUTH_SECRET`, `NEXTAUTH_URL` (production domain), `BLOB_READ_WRITE_TOKEN`. Deploy sonrası, gerekiyorsa `npx prisma migrate deploy` production veritabanına karşı çalıştırılır — **ancak bunun için önce adım 3'teki tek seferlik `npx prisma migrate dev --name init` çalıştırılıp `prisma/migrations/` dosyaları commit'lenmiş olmalıdır.**
 
 ## Görsel Ekleme (3 Adım)
 

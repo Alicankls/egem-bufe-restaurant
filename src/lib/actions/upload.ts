@@ -1,11 +1,15 @@
 'use server'
 import { put } from '@vercel/blob'
 import sharp from 'sharp'
+import { requireAdmin } from '@/lib/auth-guard'
 
 const MAX_SIZE = 5 * 1024 * 1024
 const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp']
 
 export async function uploadProductImage(formData: FormData): Promise<{ url?: string; error?: string }> {
+  const guard = await requireAdmin()
+  if (guard.error) return guard
+
   const file = formData.get('file')
   if (!(file instanceof File)) {
     return { error: 'Dosya bulunamadı.' }

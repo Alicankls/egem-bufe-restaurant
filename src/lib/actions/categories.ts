@@ -1,7 +1,8 @@
 'use server'
-import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
 import { db } from '@/lib/db'
+import { requireAdmin } from '@/lib/auth-guard'
+import { revalidateAdminPaths } from '@/lib/revalidate-admin'
 import { generateUniqueSlug } from '@/lib/queries/categories'
 import type { Business } from '@prisma/client'
 
@@ -9,7 +10,14 @@ const categorySchema = z.object({
   name: z.string().trim().min(1, 'Kategori adı zorunludur.').max(80, 'Kategori adı çok uzun.'),
 })
 
+// Server Action'lar TypeScript tiplerinden bağımsız olarak çalışma zamanında
+// çağrılabilir; bu yüzden boolean parametre de Zod ile doğrulanır.
+const activeSchema = z.boolean({ message: 'Geçersiz değer.' })
+
 export async function createCategory(business: Business, formData: FormData): Promise<{ error?: string }> {
+  const guard = await requireAdmin()
+  if (guard.error) return guard
+
   const parsed = categorySchema.safeParse({ name: formData.get('name') })
   if (!parsed.success) {
     return { error: parsed.error.issues[0]?.message ?? 'Geçersiz veri.' }
@@ -27,11 +35,14 @@ export async function createCategory(business: Business, formData: FormData): Pr
     },
   })
 
-  revalidatePath(business === 'RESTAURANT' ? '/admin/restaurant/kategoriler' : '/admin/bufe/kategoriler')
+  revalidateAdminPaths(business)
   return {}
 }
 
 export async function updateCategory(id: string, formData: FormData): Promise<{ error?: string }> {
+  const guard = await requireAdmin()
+  if (guard.error) return guard
+
   const parsed = categorySchema.safeParse({ name: formData.get('name') })
   if (!parsed.success) {
     return { error: parsed.error.issues[0]?.message ?? 'Geçersiz veri.' }
@@ -43,11 +54,14 @@ export async function updateCategory(id: string, formData: FormData): Promise<{ 
   const slug = await generateUniqueSlug(category.business, parsed.data.name, id)
   await db.category.update({ where: { id }, data: { name: parsed.data.name, slug } })
 
-  revalidatePath(category.business === 'RESTAURANT' ? '/admin/restaurant/kategoriler' : '/admin/bufe/kategoriler')
+  revalidateAdminPaths(category.business)
   return {}
 }
 
 export async function deleteCategory(id: string): Promise<{ error?: string }> {
+  const guard = await requireAdmin()
+  if (guard.error) return guard
+
   const category = await db.category.findUnique({ where: { id }, include: { _count: { select: { products: true } } } })
   if (!category) return { error: 'Kategori bulunamadı.' }
   if (category._count.products > 0) {
@@ -55,26 +69,42 @@ export async function deleteCategory(id: string): Promise<{ error?: string }> {
   }
 
   await db.category.delete({ where: { id } })
-  revalidatePath(category.business === 'RESTAURANT' ? '/admin/restaurant/kategoriler' : '/admin/bufe/kategoriler')
+  revalidateAdminPaths(category.business)
   return {}
 }
 
 export async function toggleCategoryActive(id: string, isActive: boolean): Promise<{ error?: string }> {
-  const category = await db.category.update({ where: { id }, data: { isActive } })
-  revalidatePath(category.business === 'RESTAURANT' ? '/admin/restaurant/kategoriler' : '/admin/bufe/kategoriler')
+  const guard = await requireAdmin()
+  if (guard.error) return guard
+
+  const parsedActive = activeSchema.safeParse(isActive)
+  if (!parsedActive.success) {
+    return { error: 'Geçersiz değer.' }
+  }
+
+  const category = await db.category.update({ where: { id }, data: { isActive: parsedActive.data } })
+  revalidateAdminPaths(category.business)
   return {}
 }
 
 export async function moveCategory(id: string, direction: 'up' | 'down'): Promise<{ error?: string }> {
+  const guard = await requireAdmin()
+  if (guard.error) return guard
+
+  const parsedDirection = z.enum(['up', 'down']).safeParse(direction)
+  if (!parsedDirection.success) {
+    return { error: 'Geçersiz değer.' }
+  }
+
   const category = await db.category.findUnique({ where: { id } })
   if (!category) return { error: 'Kategori bulunamadı.' }
 
   const neighbor = await db.category.findFirst({
     where: {
       business: category.business,
-      sortOrder: direction === 'up' ? { lt: category.sortOrder } : { gt: category.sortOrder },
+      sortOrder: parsedDirection.data === 'up' ? { lt: category.sortOrder } : { gt: category.sortOrder },
     },
-    orderBy: { sortOrder: direction === 'up' ? 'desc' : 'asc' },
+    orderBy: { sortOrder: parsedDirection.data === 'up' ? 'desc' : 'asc' },
   })
   if (!neighbor) return {}
 
@@ -83,6 +113,6 @@ export async function moveCategory(id: string, direction: 'up' | 'down'): Promis
     db.category.update({ where: { id: neighbor.id }, data: { sortOrder: category.sortOrder } }),
   ])
 
-  revalidatePath(category.business === 'RESTAURANT' ? '/admin/restaurant/kategoriler' : '/admin/bufe/kategoriler')
+  revalidateAdminPaths(category.business)
   return {}
 }

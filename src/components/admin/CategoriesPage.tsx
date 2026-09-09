@@ -23,13 +23,26 @@ export default function CategoriesPage({
   business: Business
   initialCategories: CategoryWithCount[]
 }) {
+  // `categories` iyimser (optimistic) güncellemeler için yerel state'te tutulur.
   const [categories, setCategories] = useState(initialCategories)
+  const [syncedCategories, setSyncedCategories] = useState(initialCategories)
   const [modalMode, setModalMode] = useState<'create' | 'edit' | null>(null)
   const [editingCategory, setEditingCategory] = useState<CategoryWithCount | null>(null)
   const [deletingCategory, setDeletingCategory] = useState<CategoryWithCount | null>(null)
   const [formError, setFormError] = useState<string | undefined>()
   const [isPending, startTransition] = useTransition()
   const router = useRouter()
+
+  // Sunucu verisi her yenilendiğinde (revalidatePath + router.refresh() sonrası
+  // gelen yeni `initialCategories` prop'u) yerel state'i sıfırla. Aksi halde
+  // useState ilk değeri "dondurur" ve ekleme/yeniden adlandırma/sıralama
+  // işlemlerinden sonra tablo bayat veri gösterir (yalnızca silme/aktiflik
+  // toggle'ı yerel olarak güncellendiği için onlar doğru görünürdü).
+  // Bkz. React "Adjusting state when a prop changes" deseni.
+  if (initialCategories !== syncedCategories) {
+    setSyncedCategories(initialCategories)
+    setCategories(initialCategories)
+  }
 
   function closeModal() {
     setModalMode(null)
@@ -83,10 +96,22 @@ export default function CategoriesPage({
   }
 
   function handleMove(category: CategoryWithCount, direction: 'up' | 'down') {
+    const index = categories.findIndex((c) => c.id === category.id)
+    const target = direction === 'up' ? index - 1 : index + 1
+    if (index === -1 || target < 0 || target >= categories.length) return
+
+    // Anında geri bildirim için satırları yerel olarak yer değiştir; sunucu
+    // yanıtı geldiğinde prop senkronizasyonu gerçek sıralamayı uygular.
+    const previous = categories
+    const swapped = [...categories]
+    ;[swapped[index], swapped[target]] = [swapped[target], swapped[index]]
+    setCategories(swapped)
+
     startTransition(async () => {
       const result = await moveCategory(category.id, direction)
       if (result.error) {
         toast.error(result.error)
+        setCategories(previous)
         return
       }
       router.refresh()

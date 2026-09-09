@@ -1,13 +1,8 @@
 import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans, Inter } from 'next/font/google'
 import './globals.css'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
-import MobileActionBar from '@/components/layout/MobileActionBar'
-import ScrollTop from '@/components/layout/ScrollTop'
 import { siteConfig } from '@/config/site'
 import { imageSlots } from '@/config/images'
-import { getRestaurantJsonLd, getBufeJsonLd } from '@/lib/jsonld'
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin', 'latin-ext'],
@@ -40,18 +35,14 @@ export const metadata: Metadata = {
   },
 }
 
+// Kök layout yalnızca <html>/<body>, font kurulumu ve kök metadata'yı sağlar.
+// Halka açık site çerçevesi (Header/Footer/MobileActionBar/ScrollTop/JSON-LD)
+// `src/app/(public)/layout.tsx` içindedir; admin sayfaları kendi
+// layout'larını (`admin/login/layout.tsx`, `admin/(panel)/layout.tsx`) kullanır.
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="tr" className={`${plusJakartaSans.variable} ${inter.variable}`}>
-      <body className="pb-16 font-sans text-ink antialiased lg:pb-0">
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getRestaurantJsonLd()) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getBufeJsonLd()) }} />
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <MobileActionBar />
-        <ScrollTop />
-      </body>
+      <body className="font-sans text-ink antialiased">{children}</body>
     </html>
   )
 }

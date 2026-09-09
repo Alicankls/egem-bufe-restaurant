@@ -2,6 +2,7 @@
 import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
 import { db } from '@/lib/db'
+import { requireAdmin } from '@/lib/auth-guard'
 
 const settingsSchema = z.object({
   brandName: z.string().trim().min(1, 'Marka adı zorunludur.'),
@@ -27,6 +28,9 @@ const WEEKDAYS = [0, 1, 2, 3, 4, 5, 6] as const
 const BUSINESSES = ['RESTAURANT', 'BUFE'] as const
 
 export async function updateSettings(formData: FormData): Promise<{ error?: string }> {
+  const guard = await requireAdmin()
+  if (guard.error) return guard
+
   const raw = Object.fromEntries(formData)
   const parsed = settingsSchema.safeParse({ ...raw, showPrices: raw.showPrices === 'on' })
   if (!parsed.success) {

@@ -45,8 +45,13 @@ async function main() {
     },
   })
 
-  // weekday: 0=Pazartesi .. 6=Pazar — src/lib/hours.ts'teki WEEKDAY_ORDER ile
-  // aynı sırayı takip eder (Plan B bu eşlemeyi köprüleyecek).
+  // DİKKAT — weekday konvansiyonu: veritabanı 0=Pazartesi .. 6=Pazar kullanır
+  // (admin panelindeki HoursEditor de bu etiketlemeyi kullanır).
+  // Bu, src/lib/hours.ts'teki WEEKDAY_ORDER'dan FARKLI bir konvansiyondur:
+  // orası ['pazar', 'pazartesi', ...] yani Date.getDay() ile uyumlu
+  // 0=Pazar .. 6=Cumartesi sırasını kullanır.
+  // İki tarafı köprüleyen herhangi bir kod (ör. DB saatlerini public siteye
+  // taşıyan bir katman) indeksleri açıkça çevirmek zorundadır.
   const restaurantHours = [
     { weekday: 0, openTime: '08:00', closeTime: '21:00' }, // Pazartesi
     { weekday: 1, openTime: '08:00', closeTime: '21:00' },
@@ -66,17 +71,20 @@ async function main() {
     { weekday: 6, openTime: '08:00', closeTime: '20:00' },
   ]
 
+  // `update: {}` — yukarıdaki Settings upsert'ü gibi kasıtlı olarak boş: seed
+  // yeniden çalıştırıldığında admin panelinden düzenlenmiş çalışma saatlerini
+  // ezmez, yalnızca eksik satırları oluşturur.
   for (const h of restaurantHours) {
     await db.dayHours.upsert({
       where: { settingsId_business_weekday: { settingsId: 'singleton', business: Business.RESTAURANT, weekday: h.weekday } },
-      update: h,
+      update: {},
       create: { ...h, settingsId: 'singleton', business: Business.RESTAURANT, isClosed: false },
     })
   }
   for (const h of bufeHours) {
     await db.dayHours.upsert({
       where: { settingsId_business_weekday: { settingsId: 'singleton', business: Business.BUFE, weekday: h.weekday } },
-      update: h,
+      update: {},
       create: { ...h, settingsId: 'singleton', business: Business.BUFE, isClosed: false },
     })
   }

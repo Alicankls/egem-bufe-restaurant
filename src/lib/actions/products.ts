@@ -1,7 +1,8 @@
 'use server'
-import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
 import { db } from '@/lib/db'
+import { requireAdmin } from '@/lib/auth-guard'
+import { revalidateAdminPaths } from '@/lib/revalidate-admin'
 import type { Business } from '@prisma/client'
 
 const productSchema = z.object({
@@ -35,13 +36,16 @@ const productSchema = z.object({
   ),
 })
 
-function pathsFor(business: Business) {
-  return business === 'RESTAURANT'
-    ? ['/admin/restaurant/urunler', '/admin/restaurant']
-    : ['/admin/bufe/urunler', '/admin/bufe']
-}
+// Server Action'lar TypeScript tiplerinden bağımsız olarak çalışma zamanında
+// çağrılabilir; toggleProductField'ın alan adı doğrudan Prisma `data` nesnesine
+// yazıldığı için literal kümesi çalışma zamanında da doğrulanmalıdır.
+const toggleFieldSchema = z.enum(['isSoldOut', 'isDailyMenu', 'isActive'])
+const toggleValueSchema = z.boolean({ message: 'Geçersiz değer.' })
 
 export async function createProduct(business: Business, formData: FormData): Promise<{ error?: string }> {
+  const guard = await requireAdmin()
+  if (guard.error) return guard
+
   const parsed = productSchema.safeParse(Object.fromEntries(formData))
   if (!parsed.success) {
     return { error: parsed.error.issues[0]?.message ?? 'Geçersiz veri.' }
@@ -80,11 +84,14 @@ export async function createProduct(business: Business, formData: FormData): Pro
     },
   })
 
-  for (const path of pathsFor(business)) revalidatePath(path)
+  revalidateAdminPaths(business)
   return {}
 }
 
 export async function updateProduct(id: string, formData: FormData): Promise<{ error?: string }> {
+  const guard = await requireAdmin()
+  if (guard.error) return guard
+
   const parsed = productSchema.safeParse(Object.fromEntries(formData))
   if (!parsed.success) {
     return { error: parsed.error.issues[0]?.message ?? 'Geçersiz veri.' }
@@ -117,16 +124,19 @@ export async function updateProduct(id: string, formData: FormData): Promise<{ e
     },
   })
 
-  for (const path of pathsFor(existing.business)) revalidatePath(path)
+  revalidateAdminPaths(existing.business)
   return {}
 }
 
 export async function deleteProduct(id: string): Promise<{ error?: string }> {
+  const guard = await requireAdmin()
+  if (guard.error) return guard
+
   const existing = await db.product.findUnique({ where: { id } })
   if (!existing) return { error: 'Ürün bulunamadı.' }
 
   await db.product.delete({ where: { id } })
-  for (const path of pathsFor(existing.business)) revalidatePath(path)
+  revalidateAdminPaths(existing.business)
   return {}
 }
 
@@ -135,7 +145,19 @@ export async function toggleProductField(
   field: 'isSoldOut' | 'isDailyMenu' | 'isActive',
   value: boolean
 ): Promise<{ error?: string }> {
-  const existing = await db.product.update({ where: { id }, data: { [field]: value } })
-  for (const path of pathsFor(existing.business)) revalidatePath(path)
+  const guard = await requireAdmin()
+  if (guard.error) return guard
+
+  const parsedField = toggleFieldSchema.safeParse(field)
+  const parsedValue = toggleValueSchema.safeParse(value)
+  if (!parsedField.success || !parsedValue.success) {
+    return { error: 'Geçersiz değer.' }
+  }
+
+  const existing = await db.product.update({
+    where: { id },
+    data: { [parsedField.data]: parsedValue.data },
+  })
+  revalidateAdminPaths(existing.business)
   return {}
 }

@@ -217,7 +217,10 @@ export default function ProductForm({
               </button>
             </div>
           ) : (
-            <label className="flex aspect-square w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed border-line px-4 text-center">
+            /* Dosya input'u `hidden` yerine `sr-only` ile gizlenir: tab
+               sırasında kalır; odaklandığında `focus-within` sayesinde dropzone
+               görünür bir odak halkası alır. */
+            <label className="flex aspect-square w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed border-line px-4 text-center focus-within:border-brand-500 focus-within:ring-2 focus-within:ring-brand-500 focus-within:ring-offset-2">
               <UploadCloud className="h-8 w-8 text-ink-soft" aria-hidden="true" />
               <span className="text-sm font-medium text-ink">Görsel yüklemek için tıklayın</span>
               <span className="text-xs text-ink-soft">PNG, JPG veya WEBP. En fazla 5MB.</span>
@@ -227,7 +230,7 @@ export default function ProductForm({
                 onChange={handleImageChange}
                 disabled={uploading}
                 aria-label="Ürün görseli yükle"
-                className="hidden"
+                className="sr-only"
               />
             </label>
           )}
