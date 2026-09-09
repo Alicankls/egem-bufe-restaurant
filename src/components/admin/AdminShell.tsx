@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { Menu as MenuIcon, X } from 'lucide-react'
+import { Toaster } from 'sonner'
 import Sidebar from './Sidebar'
 import { cn } from '@/lib/utils'
 
@@ -19,6 +20,7 @@ export default function AdminShell({ userEmail, children }: { userEmail: string;
 
   return (
     <div className="flex min-h-screen bg-brand-50">
+      <Toaster position="top-center" />
       <div className="hidden lg:block">
         <Sidebar userEmail={userEmail} />
       </div>
