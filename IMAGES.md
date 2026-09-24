@@ -21,10 +21,11 @@ Bu tablo, `src/config/images.ts` içindeki tüm görsel slotlarını listeler. B
 | home.featured.4 | Anasayfa Öne Çıkan Lezzetler | /images/home/featured-4.jpg | 1/1 | 600x600 | Karışık ızgara, doku belirgin |
 | home.featured.5 | Anasayfa Öne Çıkan Lezzetler | /images/home/featured-5.jpg | 1/1 | 600x600 | Kaşarlı tost, kesit görünümü |
 | home.featured.6 | Anasayfa Öne Çıkan Lezzetler | /images/home/featured-6.jpg | 1/1 | 600x600 | Sütlaç, üstten açı |
-| home.mosaic.1 | Anasayfa Mozaik Banner | /images/home/mosaic-1.jpg | 1/1 | 900x900 | Restaurant salonu genel görünüm |
-| home.mosaic.2 | Anasayfa Mozaik Banner | /images/home/mosaic-2.jpg | 1/1 | 900x900 | Günlük tabldot detay çekimi |
-| home.mosaic.3 | Anasayfa Mozaik Banner | /images/home/mosaic-3.jpg | 1/1 | 900x900 | Büfe tezgahı genel görünüm |
-| home.mosaic.4 | Anasayfa Mozaik Banner | /images/home/mosaic-4.jpg | 1/1 | 900x900 | Toplu yemek / kumanya servisi |
+| home.mosaic.1 | Anasayfa Mozaik Banner (Restaurant, büyük) | /images/home/mosaic-1.jpg | 1/1 | 900x900 | Restaurant teras/oturma alanı |
+| home.mosaic.2 | Anasayfa Mozaik Banner (Büfe, büyük) | /images/home/mosaic-2.jpg | 1/1 | 900x900 | Büfe reyonu ve tezgahı |
+| home.mosaic.3 | Anasayfa Mozaik Banner (destek, küçük) | /images/home/mosaic-3.jpg | 1/1 | 900x900 | Büfe oturma alanı |
+| home.mosaic.4 | Anasayfa Mozaik Banner (destek, küçük) | /images/home/mosaic-4.jpg | 1/1 | 900x900 | Günlük mezeler / taze ürün reyonu |
+| home.mosaic.5 | Anasayfa Mozaik Banner (destek, geniş şerit) | /images/home/mosaic-5.jpg | 2/1 | 1800x900 | Kuruyemiş ve atıştırmalık reyonu |
 | home.parallax | Anasayfa Arka Plan Görselli Bölüm | /images/home/parallax.jpg | 21/9 | 2400x1000 | Lokantanın dış cephesi, geniş ve sakin |
 | home.trio.1 | Anasayfa Üçlü Görsel/Video Şeridi | /images/home/trio-1.jpg | 4/3 | 1200x900 | Mutfaktan hazırlık anı |
 | home.trio.2 | Anasayfa Üçlü Görsel/Video Şeridi | /images/home/trio-2.jpg | 4/3 | 1200x900 | Servis anı |

@@ -35,10 +35,11 @@ export const imageSlots: Record<string, ImageSlot> = {
   'home.featured.5': slot({ key: 'home.featured.5', alt: 'Kaşarlı tost', ratio: '1/1', recommended: '600x600', note: 'Kare çekim, kesit görünümü' }),
   'home.featured.6': slot({ key: 'home.featured.6', alt: 'Sütlaç', ratio: '1/1', recommended: '600x600', note: 'Kare çekim, üstten açı' }),
 
-  'home.mosaic.1': slot({ key: 'home.mosaic.1', alt: 'Restaurant salonu genel görünüm', ratio: '1/1', recommended: '900x900', note: 'Restaurant bandı arka planı' }),
-  'home.mosaic.2': slot({ key: 'home.mosaic.2', alt: 'Günlük tabldot detay çekimi', ratio: '1/1', recommended: '900x900', note: 'Görsel ağırlıklı, sade kompozisyon' }),
-  'home.mosaic.3': slot({ key: 'home.mosaic.3', alt: 'Büfe tezgahı genel görünüm', ratio: '1/1', recommended: '900x900', note: 'Büfe bandı arka planı' }),
-  'home.mosaic.4': slot({ key: 'home.mosaic.4', alt: 'Toplu yemek servisi', ratio: '1/1', recommended: '900x900', note: 'Kumanya/toplu paket servis anı' }),
+  'home.mosaic.1': { ...slot({ key: 'home.mosaic.1', alt: 'EGEM-TRAK Restaurant teras oturma alanı', ratio: '1/1', recommended: '900x900', note: 'Restaurant bandı — büyük öne çıkan görsel' }), src: '/images/home/mosaic-1.jpg' },
+  'home.mosaic.2': { ...slot({ key: 'home.mosaic.2', alt: 'EGEM Büfe reyonu ve tezgahı', ratio: '1/1', recommended: '900x900', note: 'Büfe bandı — büyük öne çıkan görsel' }), src: '/images/home/mosaic-2.jpg' },
+  'home.mosaic.3': { ...slot({ key: 'home.mosaic.3', alt: 'EGEM Büfe oturma alanı ve reyon', ratio: '1/1', recommended: '900x900', note: 'Destek görsel, küçük kare' }), src: '/images/home/mosaic-3.jpg' },
+  'home.mosaic.4': { ...slot({ key: 'home.mosaic.4', alt: 'Günlük mezeler ve taze ürün reyonu', ratio: '1/1', recommended: '900x900', note: 'Destek görsel, küçük kare' }), src: '/images/home/mosaic-4.jpg' },
+  'home.mosaic.5': { ...slot({ key: 'home.mosaic.5', alt: 'Kuruyemiş ve atıştırmalık reyonu', ratio: '2/1', recommended: '1800x900', note: 'Destek görsel, geniş şerit' }), src: '/images/home/mosaic-5.jpg' },
 
   'home.parallax': slot({ key: 'home.parallax', alt: 'Lokantanın dış cephesi', ratio: '21/9', recommended: '2400x1000', note: 'Geniş, sakin, markanın güven veren yüzü' }),
 
