@@ -24,8 +24,8 @@ export const imageSlots: Record<string, ImageSlot> = {
   'hero.slide1': slot({ key: 'hero.slide1', alt: 'EGEM-TRAK Restaurant\'ta sıcak yemek servisi', ratio: '16/9', recommended: '1920x1080', note: 'Tezgahtan geniş çekim, sıcak ışık, dolu tabaklar', priority: true }),
   'hero.slide2': slot({ key: 'hero.slide2', alt: 'EGEM Büfe\'de hazırlanan tost ve sandviç', ratio: '16/9', recommended: '1920x1080', note: 'Büfe tezgahı, hızlı hazırlık anı, canlı renkler', priority: true }),
 
-  'home.welcome.1': slot({ key: 'home.welcome.1', alt: 'Lokanta iç mekan görünümü', ratio: '3/4', recommended: '900x1200', note: 'Salon/masalar, sıcak atmosfer' }),
-  'home.welcome.2': slot({ key: 'home.welcome.2', alt: 'Mutfaktan taze pişen yemek', ratio: '4/5', recommended: '900x1125', note: 'Aşçı elinden yemek, buğu/taze doku' }),
+  'home.welcome.1': { ...slot({ key: 'home.welcome.1', alt: 'EGEM-TRAK Restaurant bahçe/teras oturma alanı', ratio: '3/4', recommended: '900x1200', note: 'Salon/masalar, sıcak atmosfer' }), src: '/images/home/welcome-1.jpg' },
+  'home.welcome.2': { ...slot({ key: 'home.welcome.2', alt: 'EGEM Büfe iç mekan, raflar ve ürünler', ratio: '4/5', recommended: '900x1125', note: 'Aşçı elinden yemek, buğu/taze doku' }), src: '/images/home/welcome-2.jpg' },
   'home.split.video': slot({ key: 'home.split.video', alt: 'Bugünün menüsü tanıtım videosu kapak görseli', ratio: '16/9', recommended: '1280x720', note: 'Video kapak karesi, oynat ikonu üstte gösterilecek' }),
 
   'home.featured.1': slot({ key: 'home.featured.1', alt: 'Mercimek çorbası', ratio: '1/1', recommended: '600x600', note: 'Kare çekim, üstten açı, sade tabak' }),
