@@ -45,9 +45,9 @@ export const imageSlots: Record<string, ImageSlot> = {
 
   'home.parallax': { ...slot({ key: 'home.parallax', alt: 'EGEM-TRAK Restaurant tabelası, ağaçlar ve cami silüeti', ratio: '21/9', recommended: '2400x1000', note: 'Geniş, sakin, markanın güven veren yüzü' }), src: '/images/home/parallax.jpg' },
 
-  'home.trio.1': slot({ key: 'home.trio.1', alt: 'Mutfaktan kısa video karesi 1', ratio: '4/3', recommended: '1200x900', note: 'Hazırlık anı, video kapak karesi' }),
-  'home.trio.2': slot({ key: 'home.trio.2', alt: 'Mutfaktan kısa video karesi 2', ratio: '4/3', recommended: '1200x900', note: 'Servis anı, video kapak karesi' }),
-  'home.trio.3': slot({ key: 'home.trio.3', alt: 'Mutfaktan kısa video karesi 3', ratio: '4/3', recommended: '1200x900', note: 'Müşteri memnuniyeti anı, video kapak karesi' }),
+  'home.trio.1': { ...slot({ key: 'home.trio.1', alt: 'EGEM-TRAK Restaurant giriş kapısı', ratio: '4/3', recommended: '1200x900', note: 'Giriş/kapı görünümü' }), src: '/images/home/trio-1.jpg' },
+  'home.trio.2': { ...slot({ key: 'home.trio.2', alt: 'EGEM Büfe oturma alanı ve tezgahı', ratio: '4/3', recommended: '1200x900', note: 'İç mekan, masalar ve tezgah' }), src: '/images/home/trio-2.jpg' },
+  'home.trio.3': { ...slot({ key: 'home.trio.3', alt: 'EGEM Büfe dış cephe tabelası', ratio: '4/3', recommended: '1200x900', note: 'Dış cephe/tabela görünümü' }), src: '/images/home/trio-3.jpg' },
 
   'home.blockA.1': slot({ key: 'home.blockA.1', alt: 'Restaurant günlük tabldot çeşitleri', ratio: '3/4', recommended: '900x1200', note: 'Restaurant tanıtım bloğu üst görsel' }),
   'home.blockA.2': slot({ key: 'home.blockA.2', alt: 'Restaurant salon detayı', ratio: '4/5', recommended: '900x1125', note: 'Restaurant tanıtım bloğu alt görsel' }),

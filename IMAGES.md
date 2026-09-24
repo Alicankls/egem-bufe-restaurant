@@ -26,9 +26,9 @@ Bu tablo, `src/config/images.ts` içindeki tüm görsel slotlarını listeler. B
 | home.mosaic.4 | Anasayfa Mozaik Banner (destek, küçük) | /images/home/mosaic-4.jpg | 1/1 | 900x900 | Günlük mezeler / taze ürün reyonu |
 | home.mosaic.5 | Anasayfa Mozaik Banner (destek, geniş şerit) | /images/home/mosaic-5.jpg | 2/1 | 1800x900 | Kuruyemiş ve atıştırmalık reyonu |
 | home.parallax | Anasayfa Arka Plan Görselli Bölüm | /images/home/parallax.jpg | 21/9 | 2400x1000 | Lokantanın dış cephesi, geniş ve sakin |
-| home.trio.1 | Anasayfa Üçlü Görsel/Video Şeridi | /images/home/trio-1.jpg | 4/3 | 1200x900 | Mutfaktan hazırlık anı |
-| home.trio.2 | Anasayfa Üçlü Görsel/Video Şeridi | /images/home/trio-2.jpg | 4/3 | 1200x900 | Servis anı |
-| home.trio.3 | Anasayfa Üçlü Görsel/Video Şeridi | /images/home/trio-3.jpg | 4/3 | 1200x900 | Müşteri memnuniyeti anı |
+| home.trio.1 | Anasayfa Üçlü Görsel Şeridi | /images/home/trio-1.jpg | 4/3 | 1200x900 | Restaurant giriş kapısı |
+| home.trio.2 | Anasayfa Üçlü Görsel Şeridi | /images/home/trio-2.jpg | 4/3 | 1200x900 | Büfe oturma alanı ve tezgahı |
+| home.trio.3 | Anasayfa Üçlü Görsel Şeridi | /images/home/trio-3.jpg | 4/3 | 1200x900 | Büfe dış cephe tabelası |
 | home.blockA.1 | Anasayfa İkili Blok A (Restaurant) | /images/home/block-a-1.jpg | 3/4 | 900x1200 | Günlük tabldot çeşitleri |
 | home.blockA.2 | Anasayfa İkili Blok A (Restaurant) | /images/home/block-a-2.jpg | 4/5 | 900x1125 | Salon detayı |
 | home.blockB.1 | Anasayfa İkili Blok B (Büfe) | /images/home/block-b-1.jpg | 3/4 | 900x1200 | Hızlı servis anı |
