@@ -49,10 +49,10 @@ export const imageSlots: Record<string, ImageSlot> = {
   'home.trio.2': { ...slot({ key: 'home.trio.2', alt: 'EGEM Büfe oturma alanı ve tezgahı', ratio: '4/3', recommended: '1200x900', note: 'İç mekan, masalar ve tezgah' }), src: '/images/home/trio-2.jpg' },
   'home.trio.3': { ...slot({ key: 'home.trio.3', alt: 'EGEM Büfe dış cephe tabelası', ratio: '4/3', recommended: '1200x900', note: 'Dış cephe/tabela görünümü' }), src: '/images/home/trio-3.jpg' },
 
-  'home.blockA.1': slot({ key: 'home.blockA.1', alt: 'Restaurant günlük tabldot çeşitleri', ratio: '3/4', recommended: '900x1200', note: 'Restaurant tanıtım bloğu üst görsel' }),
-  'home.blockA.2': slot({ key: 'home.blockA.2', alt: 'Restaurant salon detayı', ratio: '4/5', recommended: '900x1125', note: 'Restaurant tanıtım bloğu alt görsel' }),
-  'home.blockB.1': slot({ key: 'home.blockB.1', alt: 'Büfe hızlı servis anı', ratio: '3/4', recommended: '900x1200', note: 'Büfe tanıtım bloğu üst görsel' }),
-  'home.blockB.2': slot({ key: 'home.blockB.2', alt: 'Büfe ürün detayı', ratio: '4/5', recommended: '900x1125', note: 'Büfe tanıtım bloğu alt görsel' }),
+  'home.blockA.1': { ...slot({ key: 'home.blockA.1', alt: 'EGEM-TRAK Restaurant günlük tabldot tabağı', ratio: '3/4', recommended: '900x1200', note: 'Restaurant tanıtım bloğu üst görsel' }), src: '/images/home/block-a-1.jpg' },
+  'home.blockA.2': { ...slot({ key: 'home.blockA.2', alt: 'EGEM-TRAK Restaurant meze/ürün reyonu', ratio: '4/5', recommended: '900x1125', note: 'Restaurant tanıtım bloğu alt görsel' }), src: '/images/home/block-a-2.jpg' },
+  'home.blockB.1': { ...slot({ key: 'home.blockB.1', alt: 'EGEM Büfe kaşarlı tost', ratio: '3/4', recommended: '900x1200', note: 'Büfe tanıtım bloğu üst görsel' }), src: '/images/home/block-b-1.jpg' },
+  'home.blockB.2': { ...slot({ key: 'home.blockB.2', alt: 'EGEM Büfe menemen ve çay', ratio: '4/5', recommended: '900x1125', note: 'Büfe tanıtım bloğu alt görsel' }), src: '/images/home/block-b-2.jpg' },
 
   'home.reviews.avatar.1': slot({ key: 'home.reviews.avatar.1', alt: 'Müşteri fotoğrafı 1', ratio: '1/1', recommended: '200x200', note: 'Yuvarlak avatar, yoksa baş harf dairesi gösterilir' }),
   'home.reviews.avatar.2': slot({ key: 'home.reviews.avatar.2', alt: 'Müşteri fotoğrafı 2', ratio: '1/1', recommended: '200x200', note: 'Yuvarlak avatar' }),

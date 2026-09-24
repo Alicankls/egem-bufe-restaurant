@@ -29,10 +29,10 @@ Bu tablo, `src/config/images.ts` içindeki tüm görsel slotlarını listeler. B
 | home.trio.1 | Anasayfa Üçlü Görsel Şeridi | /images/home/trio-1.jpg | 4/3 | 1200x900 | Restaurant giriş kapısı |
 | home.trio.2 | Anasayfa Üçlü Görsel Şeridi | /images/home/trio-2.jpg | 4/3 | 1200x900 | Büfe oturma alanı ve tezgahı |
 | home.trio.3 | Anasayfa Üçlü Görsel Şeridi | /images/home/trio-3.jpg | 4/3 | 1200x900 | Büfe dış cephe tabelası |
-| home.blockA.1 | Anasayfa İkili Blok A (Restaurant) | /images/home/block-a-1.jpg | 3/4 | 900x1200 | Günlük tabldot çeşitleri |
-| home.blockA.2 | Anasayfa İkili Blok A (Restaurant) | /images/home/block-a-2.jpg | 4/5 | 900x1125 | Salon detayı |
-| home.blockB.1 | Anasayfa İkili Blok B (Büfe) | /images/home/block-b-1.jpg | 3/4 | 900x1200 | Hızlı servis anı |
-| home.blockB.2 | Anasayfa İkili Blok B (Büfe) | /images/home/block-b-2.jpg | 4/5 | 900x1125 | Ürün detayı |
+| home.blockA.1 | Anasayfa İkili Blok A (Restaurant) | /images/home/block-a-1.jpg | 3/4 | 900x1200 | Günlük tabldot tabağı |
+| home.blockA.2 | Anasayfa İkili Blok A (Restaurant) | /images/home/block-a-2.jpg | 4/5 | 900x1125 | Meze/ürün reyonu |
+| home.blockB.1 | Anasayfa İkili Blok B (Büfe) | /images/home/block-b-1.jpg | 3/4 | 900x1200 | Kaşarlı tost |
+| home.blockB.2 | Anasayfa İkili Blok B (Büfe) | /images/home/block-b-2.jpg | 4/5 | 900x1125 | Menemen ve çay |
 | home.reviews.avatar.1 | Anasayfa Müşteri Yorumları | /images/home/avatar-1.jpg | 1/1 | 200x200 | Müşteri fotoğrafı (opsiyonel, yoksa baş harf gösterilir) |
 | home.reviews.avatar.2 | Anasayfa Müşteri Yorumları | /images/home/avatar-2.jpg | 1/1 | 200x200 | Müşteri fotoğrafı (opsiyonel) |
 | home.reviews.avatar.3 | Anasayfa Müşteri Yorumları | /images/home/avatar-3.jpg | 1/1 | 200x200 | Müşteri fotoğrafı (opsiyonel) |
