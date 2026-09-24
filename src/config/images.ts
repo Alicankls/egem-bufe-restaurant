@@ -43,7 +43,7 @@ export const imageSlots: Record<string, ImageSlot> = {
   'home.mosaic.4': { ...slot({ key: 'home.mosaic.4', alt: 'Günlük mezeler ve taze ürün reyonu', ratio: '1/1', recommended: '900x900', note: 'Destek görsel, küçük kare' }), src: '/images/home/mosaic-4.jpg' },
   'home.mosaic.5': { ...slot({ key: 'home.mosaic.5', alt: 'Kuruyemiş ve atıştırmalık reyonu', ratio: '2/1', recommended: '1800x900', note: 'Destek görsel, geniş şerit' }), src: '/images/home/mosaic-5.jpg' },
 
-  'home.parallax': slot({ key: 'home.parallax', alt: 'Lokantanın dış cephesi', ratio: '21/9', recommended: '2400x1000', note: 'Geniş, sakin, markanın güven veren yüzü' }),
+  'home.parallax': { ...slot({ key: 'home.parallax', alt: 'EGEM-TRAK Restaurant tabelası, ağaçlar ve cami silüeti', ratio: '21/9', recommended: '2400x1000', note: 'Geniş, sakin, markanın güven veren yüzü' }), src: '/images/home/parallax.jpg' },
 
   'home.trio.1': slot({ key: 'home.trio.1', alt: 'Mutfaktan kısa video karesi 1', ratio: '4/3', recommended: '1200x900', note: 'Hazırlık anı, video kapak karesi' }),
   'home.trio.2': slot({ key: 'home.trio.2', alt: 'Mutfaktan kısa video karesi 2', ratio: '4/3', recommended: '1200x900', note: 'Servis anı, video kapak karesi' }),
