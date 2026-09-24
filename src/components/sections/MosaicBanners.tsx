@@ -67,7 +67,7 @@ export default function MosaicBanners() {
         >
           <SmartImage
             slot={tile.slot}
-            className="h-full transition-transform duration-300 ease-out group-hover:scale-105"
+            className="h-full w-full transition-transform duration-300 ease-out group-hover:scale-105"
             sizes="(min-width: 1024px) 50vw, 100vw"
           />
           {tile.title ? (
