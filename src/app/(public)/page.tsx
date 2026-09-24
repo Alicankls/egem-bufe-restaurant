@@ -9,7 +9,6 @@ import CenteredIntro from '@/components/sections/CenteredIntro'
 import ParallaxSection from '@/components/sections/ParallaxSection'
 import TrioStrip from '@/components/sections/TrioStrip'
 import AltBlock from '@/components/sections/AltBlock'
-import Reviews from '@/components/sections/Reviews'
 import Gallery from '@/components/sections/Gallery'
 import LocationHours from '@/components/sections/LocationHours'
 import QrBand from '@/components/sections/QrBand'
@@ -50,7 +49,6 @@ export default function HomePage() {
         imageSlotTop="home.blockB.1"
         imageSlotBottom="home.blockB.2"
       />
-      <Reviews />
       <Gallery />
       <LocationHours />
       <QrBand />
