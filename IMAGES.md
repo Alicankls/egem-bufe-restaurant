@@ -14,7 +14,6 @@ Bu tablo, `src/config/images.ts` içindeki tüm görsel slotlarını listeler. B
 | hero.slide2 | Anasayfa Hero, slayt 2 | /images/hero/slide-2.jpg | 16/9 | 1920x1080 | Büfe tezgahı, hızlı hazırlık anı, canlı renkler |
 | home.welcome.1 | Anasayfa Hoşgeldiniz bloğu | /images/home/welcome-1.jpg | 3/4 | 900x1200 | Salon/masalar, sıcak atmosfer |
 | home.welcome.2 | Anasayfa Hoşgeldiniz bloğu | /images/home/welcome-2.jpg | 4/5 | 900x1125 | Mutfaktan taze pişen yemek, buğu/taze doku |
-| home.split.video | Anasayfa Bölünmüş Tanıtım Bandı | /images/home/split-video.jpg | 16/9 | 1280x720 | Video kapak karesi |
 | home.featured.1 | Anasayfa Öne Çıkan Lezzetler | /images/home/featured-1.jpg | 1/1 | 600x600 | Mercimek çorbası, üstten açı, sade tabak |
 | home.featured.2 | Anasayfa Öne Çıkan Lezzetler | /images/home/featured-2.jpg | 1/1 | 600x600 | Kuru fasulye, pilav yanında |
 | home.featured.3 | Anasayfa Öne Çıkan Lezzetler | /images/home/featured-3.jpg | 1/1 | 600x600 | Zeytinyağlı taze fasulye, doğal ışık |
@@ -73,3 +72,13 @@ Bu tablo, `src/config/images.ts` içindeki tüm görsel slotlarını listeler. B
 | og.default | Tüm sayfalar (Open Graph paylaşım kapağı) | /images/og/default.jpg | 1200/630 | 1200x630 | Logo + marka rengi zemin |
 
 **Not:** Menü ürün görselleri (`src/data/menu.ts` ve `src/data/bufe.ts` içindeki `image` alanı) bu tabloda yer almaz — tamamen opsiyoneldir, boş bırakılırsa ilgili menü satırı görselsiz/kompakt render edilir. Bir ürüne görsel eklemek için ilgili verideki `image: null` değerini `image: '/images/menu/<dosya-adi>.jpg'` ile değiştirmek yeterlidir.
+
+## Döngü Videosu (Anasayfa "Bugün Ne Var?" Bandı)
+
+Bu bölüm `src/config/images.ts` slot sistemini kullanmaz — `src/components/ui/LoopVideo.tsx` üzerinden doğrudan `public/videos/home/` içindeki dosyalara bağlıdır:
+
+- `public/videos/home/split-promo.webm` — birincil kaynak (VP9, daha küçük dosya)
+- `public/videos/home/split-promo.mp4` — yedek kaynak (H.264, WebM desteklemeyen tarayıcılar için)
+- `public/videos/home/split-promo-poster.jpg` — video yüklenene kadar gösterilen kapak kare
+
+Videoyu değiştirmek için: yeni dosyayı sesini kaldırıp (`-an`) optimize ederek aynı üç dosya adıyla üzerine yazın (örn. `ffmpeg -i kaynak.mp4 -an -c:v libx264 -crf 23 -preset slow -pix_fmt yuv420p -movflags +faststart split-promo.mp4`). Video, viewport'a yaklaşana kadar yüklenmez ve `prefers-reduced-motion` tercih edilmişse hiç yüklenmez (yalnızca poster gösterilir).

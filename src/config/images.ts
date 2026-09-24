@@ -26,7 +26,9 @@ export const imageSlots: Record<string, ImageSlot> = {
 
   'home.welcome.1': { ...slot({ key: 'home.welcome.1', alt: 'EGEM-TRAK Restaurant bahçe/teras oturma alanı', ratio: '3/4', recommended: '900x1200', note: 'Salon/masalar, sıcak atmosfer' }), src: '/images/home/welcome-1.jpg' },
   'home.welcome.2': { ...slot({ key: 'home.welcome.2', alt: 'EGEM Büfe iç mekan, raflar ve ürünler', ratio: '4/5', recommended: '900x1125', note: 'Aşçı elinden yemek, buğu/taze doku' }), src: '/images/home/welcome-2.jpg' },
-  'home.split.video': slot({ key: 'home.split.video', alt: 'Bugünün menüsü tanıtım videosu kapak görseli', ratio: '16/9', recommended: '1280x720', note: 'Video kapak karesi, oynat ikonu üstte gösterilecek' }),
+  // home.split.video kaldırıldı: SplitPromo artık gerçek bir döngü video
+  // dosyası kullanıyor (public/videos/home/), SmartImage slot sistemine
+  // değil doğrudan LoopVideo bileşenine bağlı.
 
   'home.featured.1': slot({ key: 'home.featured.1', alt: 'Mercimek çorbası', ratio: '1/1', recommended: '600x600', note: 'Kare çekim, üstten açı, sade tabak' }),
   'home.featured.2': slot({ key: 'home.featured.2', alt: 'Kuru fasulye', ratio: '1/1', recommended: '600x600', note: 'Kare çekim, pilav yanında' }),

@@ -1,9 +1,7 @@
 import Container from '@/components/ui/Container'
 import Section from '@/components/ui/Section'
 import Button from '@/components/ui/Button'
-import SmartImage from '@/components/ui/SmartImage'
-import VideoModal from '@/components/ui/VideoModal'
-import { siteConfig } from '@/config/site'
+import LoopVideo from '@/components/ui/LoopVideo'
 
 export default function SplitPromo() {
   return (
@@ -23,12 +21,13 @@ export default function SplitPromo() {
             </Button>
           </div>
         </div>
-        <div className="relative">
-          <SmartImage slot="home.split.video" className="rounded-lg" />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <VideoModal videoId={siteConfig.video.splitPromo} />
-          </div>
-        </div>
+        <LoopVideo
+          webmSrc="/videos/home/split-promo.webm"
+          mp4Src="/videos/home/split-promo.mp4"
+          poster="/videos/home/split-promo-poster.jpg"
+          ratio="16/9"
+          className="rounded-lg"
+        />
       </Container>
     </Section>
   )
