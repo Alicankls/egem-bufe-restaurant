@@ -11,6 +11,7 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
+    "postinstall": "prisma generate",
     "db:seed": "prisma db seed",
     "admin:reset": "tsx scripts/reset-admin.ts"
   },
