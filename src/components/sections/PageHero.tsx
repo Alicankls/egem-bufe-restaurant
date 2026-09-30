@@ -7,13 +7,15 @@ type PageHeroProps = {
   imageSlot: string
   title: string
   breadcrumbLabel: string
+  // Görselin hangi bölgesi kırpma sırasında görünür kalsın (ör. üstteki tabela) — bkz. SmartImage.
+  objectPosition?: string
 }
 
-export default function PageHero({ imageSlot, title, breadcrumbLabel }: PageHeroProps) {
+export default function PageHero({ imageSlot, title, breadcrumbLabel, objectPosition }: PageHeroProps) {
   return (
     <div className="relative flex h-[420px] w-full items-end overflow-hidden">
-      <SmartImage slot={imageSlot} absolute className="inset-0" dark sizes="100vw" />
-      <div className="absolute inset-0 bg-brand-950/55" />
+      <SmartImage slot={imageSlot} absolute className="inset-0" dark sizes="100vw" objectPosition={objectPosition} />
+      <div className="absolute inset-0 bg-gradient-to-b from-brand-950/40 to-brand-950/85" />
       <Container className="relative z-10 pb-10 text-white">
         <nav aria-label="Breadcrumb" className="mb-3 flex items-center gap-2 text-sm text-white/70">
           <Link href="/" className="hover:text-white">

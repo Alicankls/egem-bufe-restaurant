@@ -15,7 +15,7 @@ export default function Welcome() {
         <span className="text-[13px] font-semibold uppercase tracking-[0.12em] text-accent-500">Hoş Geldiniz</span>
         <h2 className="font-display text-[26px] font-extrabold leading-[1.2] text-ink lg:text-[44px]">EGEM&apos;e Hoş Geldiniz</h2>
         <p className="max-w-[60ch] text-[17px] leading-[1.65] text-ink-soft">
-          EGEM-TRAK Restaurant ve EGEM Büfe, Çorlu Yeni Sanayi Bölgesi&apos;nde tek çatı altında iki farklı ihtiyaca cevap
+          EGEM-TRAK Restaurant ve EGEM Büfe, Çorlu Zafer Mahallesi&apos;nde tek çatı altında iki farklı ihtiyaca cevap
           veriyor. Restaurant tarafında her gün taze pişen ev yemekleri, büfe tarafında ise hızlı ve pratik lezzetler sizi
           bekliyor.
         </p>

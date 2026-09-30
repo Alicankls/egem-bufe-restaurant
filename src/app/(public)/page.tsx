@@ -3,7 +3,7 @@ import { siteConfig } from '@/config/site'
 import Hero from '@/components/sections/Hero'
 import Welcome from '@/components/sections/Welcome'
 import SplitPromo from '@/components/sections/SplitPromo'
-import Featured from '@/components/sections/Featured'
+import Matches from '@/components/sections/Matches'
 import MosaicBanners from '@/components/sections/MosaicBanners'
 import CenteredIntro from '@/components/sections/CenteredIntro'
 import ParallaxSection from '@/components/sections/ParallaxSection'
@@ -15,9 +15,16 @@ import QrBand from '@/components/sections/QrBand'
 
 export const metadata: Metadata = {
   title: `${siteConfig.restaurant.name} & ${siteConfig.bufe.name}`,
-  description: "Çorlu Yeni Sanayi Bölgesi'nde günlük tabldot ve hızlı lezzetler. Masanızdaki QR kodu okutarak menüyü hemen görün.",
+  description: "Çorlu Zafer Mahallesi'nde günlük tabldot ve hızlı lezzetler. Masanızdaki QR kodu okutarak menüyü hemen görün.",
   alternates: { canonical: '/' },
 }
+
+// Maç Yayınları bölümü zamana bağlı hesaplanır (geçmiş maç otomatik düşer,
+// BUGÜN rozeti gün değişince güncellenir). Admin kaydında revalidatePath('/')
+// zaten anında tazeler; bu, saf zaman geçişiyle de en geç 5 dakikada bir
+// yeniden hesaplanmasını sağlar. Sayfa diğer bölümleri statik içerik olduğu
+// için bu süre onları etkilemez, sadece background revalidation sıklığını verir.
+export const revalidate = 300
 
 export default function HomePage() {
   return (
@@ -25,7 +32,7 @@ export default function HomePage() {
       <Hero />
       <Welcome />
       <SplitPromo />
-      <Featured />
+      <Matches />
       <MosaicBanners />
       <CenteredIntro />
       <ParallaxSection />

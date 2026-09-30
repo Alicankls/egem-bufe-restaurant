@@ -1,13 +1,16 @@
 import Container from '@/components/ui/Container'
 import Section from '@/components/ui/Section'
 import SectionTitle from '@/components/ui/SectionTitle'
-import { bufeMenu } from '@/data/bufe'
+import { getMenuCategories } from '@/lib/queries/menu-view'
 
 const popularNames = ['Ayvalık Tostu', 'Karışık Tost', 'Kaşarlı Hamburger', 'Tavuklu Sandviç', 'Patates Kızartması']
 
-export default function PopularStrip() {
+export default async function PopularStrip() {
+  const bufeMenu = await getMenuCategories('BUFE')
   const allItems = bufeMenu.flatMap((c) => c.items)
-  const popularItems = popularNames.map((name) => allItems.find((item) => item.name === name)).filter((item): item is NonNullable<typeof item> => Boolean(item))
+  const popularItems = popularNames
+    .map((name) => allItems.find((item) => item.name === name))
+    .filter((item): item is NonNullable<typeof item> => Boolean(item && !item.soldOut))
 
   return (
     <Section tone="brand-50">

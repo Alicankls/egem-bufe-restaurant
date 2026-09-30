@@ -13,7 +13,7 @@ const iconMap = { leaf: Leaf, 'shield-check': ShieldCheck, timer: Timer, wallet:
 
 export const metadata: Metadata = {
   title: 'Hakkımızda',
-  description: `${siteConfig.brandName} olarak Çorlu Yeni Sanayi Bölgesi'nde neden güvenilir bir tercih olduğumuzu öğrenin.`,
+  description: `${siteConfig.brandName} olarak Çorlu Zafer Mahallesi'nde neden güvenilir bir tercih olduğumuzu öğrenin.`,
   alternates: { canonical: '/hakkimizda' },
 }
 
@@ -34,7 +34,7 @@ export default function AboutPage() {
             <div>
               <h3 className="font-display text-lg font-bold text-ink">Nereden Geldik?</h3>
               <p className="mt-2 text-[15px] leading-[1.6] text-ink-soft">
-                EGEM ailesi, Çorlu Yeni Sanayi Bölgesi&apos;nin günlük yemek ihtiyacını karşılamak amacıyla yola çıktı.
+                EGEM ailesi, Çorlu Zafer Mahallesi&apos;nin günlük yemek ihtiyacını karşılamak amacıyla yola çıktı.
               </p>
             </div>
             <div>
@@ -80,8 +80,6 @@ export default function AboutPage() {
           })}
         </Container>
       </Section>
-
-      <SmartImage slot="about.wideBand" sizes="100vw" />
 
       <Section tone="white">
         <Container className="flex flex-col items-center gap-10">

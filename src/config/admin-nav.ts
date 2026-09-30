@@ -24,5 +24,6 @@ export const adminNav: AdminNavEntry[] = [
       { label: 'Ürünler', href: '/admin/bufe/urunler', icon: 'box' },
     ],
   },
+  { type: 'link', label: 'Maç Yayınları', href: '/admin/maclar', icon: 'calendar' },
   { type: 'link', label: 'Ayarlar', href: '/admin/settings', icon: 'settings' },
 ]

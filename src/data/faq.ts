@@ -3,19 +3,12 @@
 export const faqs: { question: string; answer: string }[] = [
   {
     question: 'Çalışma saatleriniz nedir?',
-    answer: 'EGEM-TRAK Restaurant hafta içi 08:00-21:00, Pazar 09:00-18:00 arası; EGEM Büfe hafta içi 07:00-22:00, Pazar 08:00-20:00 arası hizmet verir. Güncel saatler anasayfada canlı olarak gösterilir.',
-  },
-  {
-    question: 'Toplu sipariş / kumanya hizmeti veriyor musunuz?',
-    answer: 'Evet, sanayi bölgesindeki işletmelere günlük öğle yemeği ve toplu paket servis hizmeti sunuyoruz. Detaylar için WhatsApp hattımızdan bize ulaşabilirsiniz.',
-  },
-  {
-    question: 'Paket servis / eve teslim yapıyor musunuz?',
-    answer: 'Paket servisimiz mevcuttur. Sipariş için telefon veya WhatsApp hattımızı kullanabilirsiniz.',
+    answer:
+      'EGEM Büfe her gün 08:00-22:00, EGEM-TRAK Restaurant her gün 08:00-01:00 arası hizmet verir. Güncel saatler anasayfada canlı olarak gösterilir.',
   },
   {
     question: 'Otopark imkanınız var mı?',
-    answer: 'Sanayi bölgesindeki konumumuzda araç park edebileceğiniz alan bulunmaktadır.',
+    answer: 'Zafer Mahallesi\'ndeki konumumuzda araç park edebileceğiniz alan bulunmaktadır.',
   },
   {
     question: 'Hangi ödeme yöntemlerini kabul ediyorsunuz?',

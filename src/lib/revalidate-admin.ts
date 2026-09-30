@@ -14,4 +14,18 @@ export function revalidateAdminPaths(business: Business) {
   revalidatePath(`/admin/${segment}/urunler`)
   revalidatePath(`/admin/${segment}/gunun-menusu`)
   revalidatePath('/admin/dashboard')
+
+  // Public menü sayfaları artık aynı Product/Category tablolarını okuyor —
+  // admin'de kaydedince (görsel dahil) sitede de anında görünsün diye bu
+  // sayfaları da yeniden doğrula. `/menu` zaten dinamik (her istekte taze),
+  // ama diğerleri statik/ISR olduğundan burada olmadan bayat kalırlardı.
+  revalidatePath('/')
+  revalidatePath('/menu')
+  revalidatePath(`/${segment}`)
+}
+
+/** Maç yayınları admin listesi + anasayfa (Maçlar bölümü) için yeniden doğrulama. */
+export function revalidateMatchPaths() {
+  revalidatePath('/admin/maclar')
+  revalidatePath('/')
 }

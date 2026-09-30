@@ -5,9 +5,13 @@ import { usePathname } from 'next/navigation'
 import { Search, Phone, MessageCircle, Menu as MenuIcon } from 'lucide-react'
 import { primaryNav, secondaryNav } from '@/config/nav'
 import { siteConfig } from '@/config/site'
-import SmartImage from '@/components/ui/SmartImage'
 import MobileDrawer from './MobileDrawer'
 import { cn } from '@/lib/utils'
+
+// Görsel yerine site fontuyla yazılı marka adı — logo dosyasına bağımlı değil.
+function BrandWordmark({ className }: { className?: string }) {
+  return <span className={cn('font-display font-extrabold tracking-wide text-white', className)}>{siteConfig.brandName}</span>
+}
 
 export default function Header() {
   const pathname = usePathname()
@@ -30,7 +34,7 @@ export default function Header() {
     return (
       <header role="banner" className="fixed inset-x-0 top-0 z-40 flex h-16 items-center justify-between bg-brand-950 px-5">
         <Link href="/" aria-label={siteConfig.brandName}>
-          <SmartImage slot="brand.logoLight" className="h-9 w-[140px]" dark sizes="140px" />
+          <BrandWordmark className="text-2xl" />
         </Link>
         <div className="flex items-center gap-4">
           <a href={`tel:${siteConfig.restaurant.phone}`} aria-label="Ara" className="p-3 text-white">
@@ -70,7 +74,7 @@ export default function Header() {
           </div>
 
           <Link href="/" className="flex items-center justify-center" aria-label={siteConfig.brandName}>
-            <SmartImage slot="brand.logoLight" className="h-[52px] w-[200px]" dark sizes="200px" />
+            <BrandWordmark className="text-4xl" />
           </Link>
 
           <div className="flex flex-1 items-center justify-end gap-8">
@@ -93,7 +97,7 @@ export default function Header() {
             <MenuIcon className="h-6 w-6" aria-hidden="true" />
           </button>
           <Link href="/" aria-label={siteConfig.brandName}>
-            <SmartImage slot="brand.logoLight" className="h-9 w-[140px]" dark sizes="140px" />
+            <BrandWordmark className="text-2xl" />
           </Link>
           <a href={`tel:${siteConfig.restaurant.phone}`} aria-label="Ara" className="p-3 text-white">
             <Phone className="h-5 w-5" aria-hidden="true" />

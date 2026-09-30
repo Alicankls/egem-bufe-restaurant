@@ -5,8 +5,7 @@ import MenuContent from '@/components/menu/MenuContent'
 import TodaysSpecialBlock from '@/components/sections/TodaysSpecialBlock'
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
-import { restaurantMenu } from '@/data/menu'
-import { bufeMenu } from '@/data/bufe'
+import { getMenuCategories, getDailyMenuNames } from '@/lib/queries/menu-view'
 import { siteConfig } from '@/config/site'
 
 export const metadata: Metadata = {
@@ -18,13 +17,16 @@ export const metadata: Metadata = {
 export default async function MenuPage({ searchParams }: { searchParams: Promise<{ tab?: string }> }) {
   const params = await searchParams
   const activeTab: 'restaurant' | 'bufe' = params.tab === 'bufe' ? 'bufe' : 'restaurant'
-  const categories = activeTab === 'bufe' ? bufeMenu : restaurantMenu
+  const [categories, dailyMenuNames] = await Promise.all([
+    getMenuCategories(activeTab === 'bufe' ? 'BUFE' : 'RESTAURANT'),
+    activeTab === 'restaurant' ? getDailyMenuNames() : Promise.resolve([]),
+  ])
 
   return (
     <div className="pb-10 pt-16">
       <h1 className="sr-only">Menü</h1>
       <MenuTabs active={activeTab} />
-      {activeTab === 'restaurant' && <TodaysSpecialBlock />}
+      {activeTab === 'restaurant' && <TodaysSpecialBlock items={dailyMenuNames} />}
       <MenuContent categories={categories} />
       <Container className="flex flex-col gap-4 border-t border-line py-10 text-sm text-ink-soft">
         <p>Alerjen bilgisi için lütfen personelimize danışın.</p>

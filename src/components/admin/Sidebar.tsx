@@ -41,9 +41,7 @@ export default function Sidebar({ userEmail }: { userEmail: string }) {
   return (
     <nav className="flex h-full w-64 flex-col bg-brand-950 px-4 py-6 text-white">
       <div className="mb-6 flex justify-center">
-        <div className="h-10 w-36 overflow-hidden rounded-lg border border-white/20">
-          <SmartImage slot="brand.logoLight" className="h-full w-full" sizes="144px" dark />
-        </div>
+        <SmartImage slot="brand.logoLight" className="h-10 w-36" sizes="144px" dark />
       </div>
 
       <div className="flex flex-1 flex-col gap-1 overflow-y-auto">

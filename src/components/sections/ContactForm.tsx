@@ -1,6 +1,7 @@
 'use client'
 import { useState, type ChangeEvent, type FormEvent } from 'react'
 import Button from '@/components/ui/Button'
+import { sendContactMessage } from '@/lib/actions/contact'
 
 type FormState = { name: string; email: string; phone: string; subject: string; message: string }
 type FormErrors = Partial<Record<keyof FormState, string>>
@@ -21,6 +22,8 @@ export default function ContactForm() {
   const [form, setForm] = useState<FormState>(initialState)
   const [errors, setErrors] = useState<FormErrors>({})
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [serverError, setServerError] = useState('')
+  const [pending, setPending] = useState(false)
 
   function handleChange(field: keyof FormState) {
     return (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -28,20 +31,32 @@ export default function ContactForm() {
     }
   }
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault()
     const validationErrors = validate(form)
     setErrors(validationErrors)
+    setServerError('')
     if (Object.keys(validationErrors).length > 0) {
       setStatus('idle')
       return
     }
+
+    setPending(true)
     try {
-      // TODO: form gönderim entegrasyonu (e-posta servisi / API rotası)
+      // Mesaj, sunucu tarafında e-posta olarak gönderilir
+      // (bkz. src/lib/actions/contact.ts → src/lib/mailer.ts).
+      const result = await sendContactMessage({ ...form })
+      if (result.error) {
+        setServerError(result.error)
+        setStatus('error')
+        return
+      }
       setStatus('success')
       setForm(initialState)
     } catch {
       setStatus('error')
+    } finally {
+      setPending(false)
     }
   }
 
@@ -98,7 +113,9 @@ export default function ContactForm() {
         />
         {errors.message && <p className="mt-1 text-xs text-red-600">{errors.message}</p>}
       </div>
-      <Button type="submit">Gönder</Button>
+      <Button type="submit" disabled={pending}>
+        {pending ? 'Gönderiliyor…' : 'Gönder'}
+      </Button>
       {status === 'success' && (
         <p role="status" className="text-sm font-medium text-green-700">
           Mesajınız alındı, en kısa sürede dönüş yapacağız.
@@ -106,7 +123,7 @@ export default function ContactForm() {
       )}
       {status === 'error' && (
         <p role="alert" className="text-sm font-medium text-red-600">
-          Bir şeyler ters gitti, lütfen tekrar deneyin.
+          {serverError || 'Bir şeyler ters gitti, lütfen tekrar deneyin.'}
         </p>
       )}
     </form>

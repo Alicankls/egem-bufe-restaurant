@@ -23,9 +23,7 @@ function LoginForm() {
     <div className="flex min-h-screen items-center justify-center bg-brand-950 px-4">
       <div className="w-full max-w-[420px] rounded-2xl bg-brand-900 p-8 shadow-md">
         <div className="mb-4 flex justify-center">
-          <div className="h-11 w-40 overflow-hidden rounded-xl border-2 border-white/20">
-            <SmartImage slot="brand.logoLight" className="h-full w-full" sizes="160px" dark />
-          </div>
+          <SmartImage slot="brand.logoLight" className="h-11 w-40" sizes="160px" dark />
         </div>
         <p className="mb-6 text-center text-sm text-white/70">Menü yönetim panelinize hoş geldiniz.</p>
 

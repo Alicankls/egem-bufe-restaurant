@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     default: `${siteConfig.restaurant.name} & ${siteConfig.bufe.name}`,
     template: `%s · ${siteConfig.brandName}`,
   },
-  description: 'Çorlu Yeni Sanayi Bölgesi\'nde günlük tabldot ve hızlı lezzetler. Masanızdaki QR kodu okutarak menüyü hemen görün.',
+  description: 'Çorlu Zafer Mahallesi\'nde günlük tabldot ve hızlı lezzetler. Masanızdaki QR kodu okutarak menüyü hemen görün.',
   openGraph: {
     type: 'website',
     locale: 'tr_TR',

@@ -9,9 +9,24 @@ type SmartImageProps = {
   sizes?: string
   dark?: boolean
   absolute?: boolean
+  // Görselin içine gömülü, kırpılınca kaybolan metin/CTA gibi kritik içerik
+  // varsa: dar (mobil) genişlikte kırpmak yerine sığdırır (harfler kesilmez),
+  // geniş ekranda normal object-cover kullanılır.
+  mobileContain?: boolean
+  // object-cover kırpma sırasında hangi noktanın sabit kalacağını belirler
+  // (ör. "center 30%" — üstteki tabela/başlık kırpılınca da görünür kalsın).
+  objectPosition?: string
 }
 
-export default function SmartImage({ slot, className, sizes = '100vw', dark = false, absolute = false }: SmartImageProps) {
+export default function SmartImage({
+  slot,
+  className,
+  sizes = '100vw',
+  dark = false,
+  absolute = false,
+  mobileContain = false,
+  objectPosition,
+}: SmartImageProps) {
   const data = imageSlots[slot]
   if (!data) {
     throw new Error(`Bilinmeyen görsel slotu: ${slot}`)
@@ -26,7 +41,15 @@ export default function SmartImage({ slot, className, sizes = '100vw', dark = fa
       }}
     >
       {data.src ? (
-        <Image src={data.src} alt={data.alt} fill sizes={sizes} priority={data.priority} className="object-cover" />
+        <Image
+          src={data.src}
+          alt={data.alt}
+          fill
+          sizes={sizes}
+          priority={data.priority}
+          className={mobileContain ? 'object-contain lg:object-cover' : 'object-cover'}
+          style={objectPosition ? { objectPosition } : undefined}
+        />
       ) : (
         <div
           className={cn(

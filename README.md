@@ -79,7 +79,7 @@ kullanıcıyı etkiler.
 
 ### 7. Vercel'e deploy
 
-Vercel proje ayarlarında şu environment variable'ları tanımlayın: `DATABASE_URL`, `AUTH_SECRET`, `NEXTAUTH_URL` (production domain), `BLOB_READ_WRITE_TOKEN`. Deploy sonrası, production veritabanına karşı `npx prisma migrate deploy` çalıştırılır (commit'li `prisma/migrations/` dosyalarını uygular).
+Vercel proje ayarlarında şu environment variable'ları tanımlayın: `DATABASE_URL`, `AUTH_SECRET`, `NEXTAUTH_URL` (production domain), `BLOB_READ_WRITE_TOKEN`, `CONTACT_TO_EMAIL` (+ e-posta gönderimi için `RESEND_API_KEY`). Deploy sonrası, production veritabanına karşı `npx prisma migrate deploy` çalıştırılır (commit'li `prisma/migrations/` dosyalarını uygular).
 
 ## Görsel Ekleme (3 Adım)
 
@@ -97,9 +97,48 @@ Tüm slotların tam listesi ve içerik önerileri için `IMAGES.md`'ye bakın.
 
 ## İşletme Bilgisi Güncelleme
 
-Telefon, WhatsApp, adres, harita linki, sosyal medya ve çalışma saatleri **yalnızca** `src/config/site.ts` dosyasında tutulur. Bu dosyadaki `// TODO: müşteriden alınacak` yorumlu alanları gerçek bilgilerle güncelleyin. Başka hiçbir dosyada telefon/adres hard-code edilmemiştir.
+Telefon, WhatsApp, adres, harita linki ve çalışma saatleri **yalnızca** `src/config/site.ts` dosyasında tutulur. Başka hiçbir dosyada telefon/adres hard-code edilmemiştir.
+
+- Site genelinde **tek telefon numarası** kullanılır (0534 820 59 62): Restaurant ve Büfe aramaları, WhatsApp hattı ve mobil "Ara" butonu aynı numaraya yönlenir. Numarayı değiştirmek için dosyanın başındaki `PHONE`, `PHONE_DISPLAY` ve `WHATSAPP_NUMBER` sabitlerini güncellemek yeterlidir.
+- Sosyal medya bağlantıları (Facebook/Instagram/YouTube) istek üzerine kaldırılmıştır; footer'da yalnızca WhatsApp gösterilir.
+- Çalışma saatleri: Restaurant her gün 08:00-01:00 (kapanış gece yarısını geçer), Büfe her gün 08:00-22:00.
 
 Menü/nav linklerini değiştirmek için `src/config/nav.ts`'i düzenleyin.
+
+## İletişim Formu (E-posta Gönderimi)
+
+`/iletisim` sayfasındaki "Bizimle İletişime Geçin" formundan gönderilen mesajlar
+sunucu tarafında e-postaya dönüştürülür ve şu adrese iletilir:
+`CONTACT_TO_EMAIL` (varsayılan: `ozkanegemseeit@gmail.com`).
+
+Akış: `src/components/sections/ContactForm.tsx` → `src/lib/actions/contact.ts`
+(doğrulama + rate limit) → `src/lib/mailer.ts` (gönderim).
+
+İki yöntem desteklenir; `.env`'de hangisi tanımlıysa o kullanılır (Resend öncelikli):
+
+1. **Resend (önerilen)** — [resend.com](https://resend.com)
+   üzerinden hesap açıp API anahtarı üretin ve `.env`'e ekleyin:
+   ```bash
+   RESEND_API_KEY="re_..."
+   # (Opsiyonel) Gönderen adresi — boş bırakılırsa varsayılan kullanılır:
+   CONTACT_FROM_EMAIL=""
+   ```
+   Not: Doğrulanmış domain olmadan Resend yalnızca **hesabı açtığınız adrese**
+   gönderim yapar — bu adres zaten `CONTACT_TO_EMAIL` olduğu için sorun çıkmaz.
+2. **Gmail / SMTP** — Gmail hesabında 2 adımlı doğrulamayı açıp 16 karakterlik bir
+   **uygulama şifresi** üretin (Google Hesap → Güvenlik → Uygulama şifreleri):
+   ```bash
+   SMTP_USER="ozkanegemseeit@gmail.com"
+   SMTP_PASS="xxxxxxxxxxxxxxxx"
+   ```
+   Gönderim `nodemailer` ile `smtp.gmail.com:465` üzerinden yapılır.
+
+Hiçbiri tanımlı değilse form "gönderilemedi" hatası verir; mesaj sessizce
+kaybolmaz.
+
+Test: `npm run dev` ile `/iletisim` sayfasını açıp formu doldurup "Gönder"e basın,
+ardından ilgili gelen kutusunu kontrol edin. Aynı IP'den dakikada 5'ten fazla
+gönderim spam koruması olarak reddedilir.
 
 ## Menü ve Fiyat Güncelleme
 
@@ -133,7 +172,8 @@ src/components/    layout/ (Header, Footer, MobileDrawer, ...) · ui/ (Button, S
                    sections/ (anasayfa & alt sayfa bölümleri) · menu/ (QR menü bileşenleri)
 src/config/        site.ts (işletme bilgisi), images.ts (görsel slotları), nav.ts (menü linkleri)
 src/data/          menu.ts, bufe.ts, faq.ts, reviews.ts, features.ts
-src/lib/           utils.ts, hours.ts, useSlider.ts, useActiveSection.ts, menuSearch.ts, qr.ts, jsonld.ts
+src/lib/           utils.ts, hours.ts, useSlider.ts, useActiveSection.ts, menuSearch.ts, qr.ts, jsonld.ts,
+                   contact.ts (doğrulama), mailer.ts (e-posta gönderimi), actions/, queries/
 public/images/     Statik görseller (bkz. IMAGES.md)
 ```
 

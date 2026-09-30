@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import Container from '@/components/ui/Container'
 import Accordion from '@/components/ui/Accordion'
 import SectionTitle from '@/components/ui/SectionTitle'
-import SmartImage from '@/components/ui/SmartImage'
 import ContactForm from '@/components/sections/ContactForm'
 import LocationHours from '@/components/sections/LocationHours'
 import { faqs } from '@/data/faq'
@@ -17,10 +16,8 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div>
-      <div className="relative overflow-hidden py-12 pt-28 text-white lg:pt-32">
-        <SmartImage slot="contact.hero" absolute className="inset-0" dark sizes="100vw" />
-        <div className="absolute inset-0 bg-brand-950/75" />
-        <Container className="relative z-10">
+      <div className="bg-brand-950 py-12 pt-28 text-white lg:pt-32">
+        <Container>
           <h1 className="font-display text-3xl font-extrabold lg:text-4xl">İletişim</h1>
         </Container>
       </div>

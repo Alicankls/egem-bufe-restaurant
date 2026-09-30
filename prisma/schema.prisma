@@ -99,5 +99,28 @@ model Settings {
   themeColor         String     @default("#1A73C7")
 
   hours              DayHours[]
+  // Maç Yayınları bölümünde bugün yayında maç yokken gösterilecek mesaj
+  // (admin panelden tek satır olarak düzenlenir). Boş bırakılabilir.
+  noMatchMessage     String?
   updatedAt          DateTime   @updatedAt
+}
+
+model Match {
+  id          String   @id @default(cuid())
+  homeTeam    String
+  awayTeam    String
+  competition String
+  imageUrl    String?
+  // Maçın gerçek başlama anı (UTC). Admin formunda ayrı girilen tarih+saat,
+  // Türkiye saati (UTC+3, sabit — 2016'dan beri yaz saati yok) varsayılarak
+  // buraya tek bir ana dönüştürülür. Böylece "geçti mi" karşılaştırması
+  // sunucunun kendi saat dilimine bakmaksızın her zaman doğru olur.
+  kickoffAt   DateTime
+  note        String?
+  isFeatured  Boolean  @default(false)
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([kickoffAt])
 }

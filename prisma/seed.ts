@@ -26,17 +26,16 @@ async function main() {
       id: 'singleton',
       brandName: 'EGEM',
       restaurantName: 'EGEM-TRAK Restaurant',
-      // TODO: müşteriden alınacak
-      restaurantPhone: '+902820000001',
-      restaurantWhatsapp: '905000000001',
+      // Site genelinde tek numara kullanılır: 0534 820 59 62
+      restaurantPhone: '+905348205962',
+      restaurantWhatsapp: '905348205962',
       bufeName: 'EGEM Büfe',
+      bufePhone: '+905348205962',
+      bufeWhatsapp: '905348205962',
       // TODO: müşteriden alınacak
-      bufePhone: '+902820000002',
-      bufeWhatsapp: '905000000002',
-      // TODO: müşteriden alınacak
-      address: 'Yeni Sanayi Bölgesi, Çorlu / Tekirdağ',
-      mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1!2d27.8014!3d41.1590',
-      directionsUrl: 'https://maps.google.com/?q=EGEM+Yeni+Sanayi+Bolgesi+Corlu',
+      address: 'Zafer Mahallesi Acente 2. Sokak No:14, Çorlu / Tekirdağ',
+      mapEmbedUrl: 'https://maps.google.com/maps?q=Zafer%20Mahallesi%20Acente%202.%20Sokak%20No%3A14%2C%20%C3%87orlu%2C%20Tekirda%C4%9F&z=16&output=embed',
+      directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=Zafer%20Mahallesi%20Acente%202.%20Sokak%20No%3A14%2C%20%C3%87orlu%2C%20Tekirda%C4%9F',
       instagram: 'https://instagram.com/',
       facebook: 'https://facebook.com/',
       youtube: 'https://youtube.com/',
@@ -52,23 +51,24 @@ async function main() {
   // 0=Pazar .. 6=Cumartesi sırasını kullanır.
   // İki tarafı köprüleyen herhangi bir kod (ör. DB saatlerini public siteye
   // taşıyan bir katman) indeksleri açıkça çevirmek zorundadır.
+  // DİKKAT — Restaurant'ın kapanışı 01:00, yani gece yarısını geçer.
   const restaurantHours = [
-    { weekday: 0, openTime: '08:00', closeTime: '21:00' }, // Pazartesi
-    { weekday: 1, openTime: '08:00', closeTime: '21:00' },
-    { weekday: 2, openTime: '08:00', closeTime: '21:00' },
-    { weekday: 3, openTime: '08:00', closeTime: '21:00' },
-    { weekday: 4, openTime: '08:00', closeTime: '21:00' },
-    { weekday: 5, openTime: '08:00', closeTime: '21:00' },
-    { weekday: 6, openTime: '09:00', closeTime: '18:00' }, // Pazar
+    { weekday: 0, openTime: '08:00', closeTime: '01:00' }, // Pazartesi
+    { weekday: 1, openTime: '08:00', closeTime: '01:00' },
+    { weekday: 2, openTime: '08:00', closeTime: '01:00' },
+    { weekday: 3, openTime: '08:00', closeTime: '01:00' },
+    { weekday: 4, openTime: '08:00', closeTime: '01:00' },
+    { weekday: 5, openTime: '08:00', closeTime: '01:00' },
+    { weekday: 6, openTime: '08:00', closeTime: '01:00' }, // Pazar
   ]
   const bufeHours = [
-    { weekday: 0, openTime: '07:00', closeTime: '22:00' },
-    { weekday: 1, openTime: '07:00', closeTime: '22:00' },
-    { weekday: 2, openTime: '07:00', closeTime: '22:00' },
-    { weekday: 3, openTime: '07:00', closeTime: '22:00' },
-    { weekday: 4, openTime: '07:00', closeTime: '22:00' },
-    { weekday: 5, openTime: '07:00', closeTime: '22:00' },
-    { weekday: 6, openTime: '08:00', closeTime: '20:00' },
+    { weekday: 0, openTime: '08:00', closeTime: '22:00' },
+    { weekday: 1, openTime: '08:00', closeTime: '22:00' },
+    { weekday: 2, openTime: '08:00', closeTime: '22:00' },
+    { weekday: 3, openTime: '08:00', closeTime: '22:00' },
+    { weekday: 4, openTime: '08:00', closeTime: '22:00' },
+    { weekday: 5, openTime: '08:00', closeTime: '22:00' },
+    { weekday: 6, openTime: '08:00', closeTime: '22:00' },
   ]
 
   // `update: {}` — yukarıdaki Settings upsert'ü gibi kasıtlı olarak boş: seed

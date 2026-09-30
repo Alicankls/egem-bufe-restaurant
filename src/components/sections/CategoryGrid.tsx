@@ -3,11 +3,12 @@ import Container from '@/components/ui/Container'
 import Section from '@/components/ui/Section'
 import SectionTitle from '@/components/ui/SectionTitle'
 import SmartImage from '@/components/ui/SmartImage'
-import { bufeMenu } from '@/data/bufe'
+import { getMenuCategories } from '@/lib/queries/menu-view'
 
 const categorySlots = ['bufe.category.1', 'bufe.category.2', 'bufe.category.3', 'bufe.category.4', 'bufe.category.5', 'bufe.category.6'] as const
 
-export default function CategoryGrid() {
+export default async function CategoryGrid() {
+  const bufeMenu = await getMenuCategories('BUFE')
   return (
     <Section tone="white">
       <Container className="flex flex-col items-center gap-10">

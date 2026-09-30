@@ -1,17 +1,21 @@
 'use client'
-import { useEffect, useRef, useState, type TouchEvent } from 'react'
+import { useRef, type TouchEvent } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import SmartImage from '@/components/ui/SmartImage'
+import LoopVideo from '@/components/ui/LoopVideo'
 import Button from '@/components/ui/Button'
 import { useSlider } from '@/lib/useSlider'
-import { getOpenStatus, getTodayHours } from '@/lib/hours'
-import { siteConfig } from '@/config/site'
 import { cn } from '@/lib/utils'
 
 const slides = [
   {
     imageSlot: 'hero.slide1',
-    kicker: 'ÇORLU YENİ SANAYİ BÖLGESİ',
+    video: {
+      webmSrc: '/videos/restaurant/hero.webm',
+      mp4Src: '/videos/restaurant/hero.mp4',
+      poster: '/videos/restaurant/hero-poster.jpg',
+    },
+    kicker: 'ÇORLU · ZAFER MAHALLESİ',
     title: 'Her gün taze, ev yemeği tadında',
     subtitle: 'Sıcak, doyurucu ve güvenilir günlük tabldot lezzetleri.',
     ctaPrimary: { label: 'Bugünün Menüsü', href: '/menu?tab=restaurant' },
@@ -19,6 +23,9 @@ const slides = [
   },
   {
     imageSlot: 'hero.slide2',
+    // Yemekler görselin alt kısmında; kırpılınca kaybolmasınlar diye
+    // odak noktasını aşağı kaydırıyoruz.
+    objectPosition: 'center 70%',
     kicker: 'HEMEN AL, GEÇ',
     title: 'Acelesi olana EGEM Büfe',
     subtitle: 'Tost, sandviç ve daha fazlası dakikalar içinde hazır.',
@@ -30,14 +37,6 @@ const slides = [
 export default function Hero() {
   const { index, next, prev, goTo } = useSlider(slides.length, 6000)
   const touchStartX = useRef<number | null>(null)
-  const [status, setStatus] = useState<{ isOpen: boolean; label: string } | null>(null)
-
-  useEffect(() => {
-    // Genel canlı durum rozeti EGEM Büfe saatlerini baz alır (gün içinde en geç kapanan işletme).
-    const now = new Date()
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setStatus(getOpenStatus(getTodayHours(siteConfig.bufe.hours, now), now))
-  }, [])
 
   function onTouchStart(e: TouchEvent) {
     touchStartX.current = e.touches[0].clientX
@@ -71,8 +70,19 @@ export default function Hero() {
           className={cn('absolute inset-0 transition-opacity duration-500', i === index ? 'opacity-100' : 'pointer-events-none opacity-0')}
           aria-hidden={i !== index}
         >
-          <SmartImage slot={s.imageSlot} absolute className="inset-0" sizes="100vw" dark />
-          <div className="absolute inset-0 bg-brand-950/55" />
+          {'video' in s && s.video ? (
+            <LoopVideo {...s.video} className="absolute inset-0 h-full w-full" />
+          ) : (
+            <SmartImage
+              slot={s.imageSlot}
+              absolute
+              className="inset-0"
+              sizes="100vw"
+              dark
+              objectPosition={'objectPosition' in s ? s.objectPosition : undefined}
+            />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-b from-brand-950/40 to-brand-950/85" />
         </div>
       ))}
 
@@ -87,12 +97,6 @@ export default function Hero() {
           </Button>
         </div>
       </div>
-
-      {status && (
-        <div className="absolute bottom-6 left-5 z-10 rounded-full bg-white/10 px-4 py-2 text-xs font-medium text-white backdrop-blur">
-          {status.label}
-        </div>
-      )}
 
       <button
         onClick={prev}

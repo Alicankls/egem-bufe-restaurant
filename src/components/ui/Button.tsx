@@ -8,6 +8,7 @@ type ButtonProps = {
   children: React.ReactNode
   className?: string
   type?: 'button' | 'submit'
+  disabled?: boolean
 }
 
 const variantClasses: Record<NonNullable<ButtonProps['variant']>, string> = {
@@ -16,10 +17,11 @@ const variantClasses: Record<NonNullable<ButtonProps['variant']>, string> = {
   'outline-light': 'border border-white text-white hover:bg-white/10',
 }
 
-export default function Button({ href, onClick, variant = 'solid', children, className, type = 'button' }: ButtonProps) {
+export default function Button({ href, onClick, variant = 'solid', children, className, type = 'button', disabled }: ButtonProps) {
   const classes = cn(
     'inline-flex min-h-[44px] items-center justify-center rounded-btn px-6 text-[13px] font-semibold uppercase tracking-[0.04em] transition-colors duration-200',
     variantClasses[variant],
+    disabled && 'cursor-not-allowed opacity-60',
     className
   )
   if (href) {
@@ -30,7 +32,7 @@ export default function Button({ href, onClick, variant = 'solid', children, cla
     )
   }
   return (
-    <button type={type} onClick={onClick} className={classes}>
+    <button type={type} onClick={onClick} className={classes} disabled={disabled}>
       {children}
     </button>
   )

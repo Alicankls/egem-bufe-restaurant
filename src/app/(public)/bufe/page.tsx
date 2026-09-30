@@ -9,14 +9,14 @@ import { siteConfig } from '@/config/site'
 
 export const metadata: Metadata = {
   title: siteConfig.bufe.name,
-  description: "Tost, sandviç, sosisli ve hamburger — Çorlu Yeni Sanayi Bölgesi'nde hızlı ve pratik lezzetler.",
+  description: "Tost, sandviç, sosisli ve hamburger — Çorlu Zafer Mahallesi'nde hızlı ve pratik lezzetler.",
   alternates: { canonical: '/bufe' },
 }
 
 export default function BufePage() {
   return (
     <div>
-      <PageHero imageSlot="bufe.hero" title="EGEM Büfe" breadcrumbLabel="Büfe" />
+      <PageHero imageSlot="bufe.hero" title="EGEM Büfe" breadcrumbLabel="Büfe" objectPosition="center 30%" />
       <ThreeStepStrip />
       <CategoryGrid />
       <PopularStrip />
