@@ -34,9 +34,9 @@ export default async function MenuPage({ searchParams }: { searchParams: Promise
           Restaurant: {siteConfig.restaurant.phoneDisplay} · Büfe: {siteConfig.bufe.phoneDisplay}
         </p>
         <div className="flex flex-wrap gap-3">
-          <Button href={`tel:${siteConfig.restaurant.phone}`}>
+          <Button href={`tel:${activeTab === 'bufe' ? siteConfig.bufe.phone : siteConfig.restaurant.phone}`}>
             <Phone className="mr-2 h-4 w-4" aria-hidden="true" />
-            Ara
+            {activeTab === 'bufe' ? `Büfe: ${siteConfig.bufe.phoneDisplay}` : `Restaurant: ${siteConfig.restaurant.phoneDisplay}`}
           </Button>
           <Button href={siteConfig.social.whatsapp} variant="outline">
             <MessageCircle className="mr-2 h-4 w-4" aria-hidden="true" />

@@ -37,7 +37,7 @@ export default function Header() {
           <BrandWordmark className="text-2xl" />
         </Link>
         <div className="flex items-center gap-4">
-          <a href={`tel:${siteConfig.restaurant.phone}`} aria-label="Ara" className="p-3 text-white">
+          <a href={`tel:${siteConfig.restaurant.phone}`} aria-label="Restaurant'ı ara" className="p-3 text-white">
             <Phone className="h-5 w-5" aria-hidden="true" />
           </a>
           <a href={siteConfig.social.whatsapp} aria-label="WhatsApp" className="p-3 text-white">
@@ -85,10 +85,17 @@ export default function Header() {
                 </Link>
               ))}
             </nav>
-            <a href={`tel:${siteConfig.restaurant.phone}`} className="flex items-center gap-2 text-white">
-              <Phone className="h-4 w-4" aria-hidden="true" />
-              <span className="text-[13px] font-semibold">{siteConfig.restaurant.phoneDisplay}</span>
-            </a>
+            <div className="flex items-center gap-2 text-white">
+              <Phone className="h-4 w-4 shrink-0" aria-hidden="true" />
+              <span className="flex flex-col leading-tight">
+                <a href={`tel:${siteConfig.restaurant.phone}`} className="text-[13px] font-semibold hover:opacity-80">
+                  {siteConfig.restaurant.phoneDisplay}
+                </a>
+                <a href={`tel:${siteConfig.bufe.phone}`} className="text-[13px] font-semibold hover:opacity-80">
+                  {siteConfig.bufe.phoneDisplay}
+                </a>
+              </span>
+            </div>
           </div>
         </div>
 
@@ -99,7 +106,7 @@ export default function Header() {
           <Link href="/" aria-label={siteConfig.brandName}>
             <BrandWordmark className="text-2xl" />
           </Link>
-          <a href={`tel:${siteConfig.restaurant.phone}`} aria-label="Ara" className="p-3 text-white">
+          <a href={`tel:${siteConfig.restaurant.phone}`} aria-label="Restaurant'ı ara" className="p-3 text-white">
             <Phone className="h-5 w-5" aria-hidden="true" />
           </a>
         </div>

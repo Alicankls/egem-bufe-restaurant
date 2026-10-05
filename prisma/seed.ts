@@ -26,11 +26,11 @@ async function main() {
       id: 'singleton',
       brandName: 'EGEM',
       restaurantName: 'EGEM-TRAK Restaurant',
-      // Site genelinde tek numara kullanılır: 0534 820 59 62
+      // Restaurant: 0534 820 59 62 — Büfe: 0282 673 44 22 (WhatsApp hattı tek mobil numaradır)
       restaurantPhone: '+905348205962',
       restaurantWhatsapp: '905348205962',
       bufeName: 'EGEM Büfe',
-      bufePhone: '+905348205962',
+      bufePhone: '+902826734422',
       bufeWhatsapp: '905348205962',
       // TODO: müşteriden alınacak
       address: 'Zafer Mahallesi Acente 2. Sokak No:14, Çorlu / Tekirdağ',

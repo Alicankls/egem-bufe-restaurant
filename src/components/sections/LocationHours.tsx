@@ -69,7 +69,11 @@ export default function LocationHours() {
           <div className="flex flex-wrap gap-3">
             <Button href={`tel:${siteConfig.restaurant.phone}`}>
               <Phone className="mr-2 h-4 w-4" aria-hidden="true" />
-              Ara
+              Restaurant: {siteConfig.restaurant.phoneDisplay}
+            </Button>
+            <Button href={`tel:${siteConfig.bufe.phone}`} variant="outline">
+              <Phone className="mr-2 h-4 w-4" aria-hidden="true" />
+              Büfe: {siteConfig.bufe.phoneDisplay}
             </Button>
             <Button href={siteConfig.social.whatsapp} variant="outline">
               <MessageCircle className="mr-2 h-4 w-4" aria-hidden="true" />

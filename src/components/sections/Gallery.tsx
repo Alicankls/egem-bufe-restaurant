@@ -7,7 +7,7 @@ import SmartImage from '@/components/ui/SmartImage'
 import Lightbox from '@/components/ui/Lightbox'
 import { imageSlots } from '@/config/images'
 
-const gallerySlotKeys = ['home.gallery.1', 'home.gallery.2', 'home.gallery.3', 'home.gallery.4', 'home.gallery.5', 'home.gallery.6'] as const
+const gallerySlotKeys = ['home.gallery.1', 'home.gallery.2', 'home.gallery.3', 'home.gallery.5', 'home.gallery.6'] as const
 
 export default function Gallery() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
@@ -19,7 +19,7 @@ export default function Gallery() {
         <SectionTitle kicker="Bir Bakış" lead="Mekânımızdan" strong="Kareler" />
         <div className="grid w-full grid-cols-2 gap-4 lg:grid-cols-3">
           {gallerySlotKeys.map((key, i) => (
-            <button key={key} onClick={() => setActiveIndex(i)} className="overflow-hidden rounded-lg text-left" aria-label={`${images[i].alt} - büyüt`}>
+            <button key={key} onClick={() => setActiveIndex(i)} className="overflow-hidden rounded-lg text-left last:col-span-2 lg:last:col-span-1" aria-label={`${images[i].alt} - büyüt`}>
               <SmartImage slot={key} />
             </button>
           ))}

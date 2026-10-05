@@ -24,10 +24,16 @@ const bufeHours: BusinessHours = {
   pazar: { open: '08:00', close: '22:00' },
 }
 
-// Site genelinde tek telefon numarası kullanılır: hem Restaurant hem Büfe
-// aramaları ve WhatsApp hattı 0534 820 59 62'ye yönlenir.
-const PHONE = '+905348205962'
-const PHONE_DISPLAY = '0534 820 59 62'
+// Restaurant hattı: 0534 820 59 62 — Büfe hattı: 0282 673 44 22.
+// Her işletmenin aramaları kendi numarasına yönlenir. WhatsApp hattı tek
+// mobil numaradır (0534 820 59 62); Büfe'nin 0282'li numarası sabit hat
+// olduğu için wa.me bağlantılarında kullanılmaz.
+const RESTAURANT_PHONE = '+905348205962'
+const RESTAURANT_PHONE_DISPLAY = '0534 820 59 62'
+
+const BUFE_PHONE = '+902826734422'
+const BUFE_PHONE_DISPLAY = '0282 673 44 22'
+
 const WHATSAPP_NUMBER = '905348205962'
 
 // Site genelinde tek adres kaynağı: footer, iletişim bölümü, harita, JSON-LD
@@ -41,15 +47,15 @@ export const siteConfig = {
   siteUrl: 'https://www.egemtrak.com',
   restaurant: {
     name: 'EGEM-TRAK Restaurant',
-    phone: PHONE,
-    phoneDisplay: PHONE_DISPLAY,
+    phone: RESTAURANT_PHONE,
+    phoneDisplay: RESTAURANT_PHONE_DISPLAY,
     whatsapp: WHATSAPP_NUMBER,
     hours: restaurantHours,
   },
   bufe: {
     name: 'EGEM Büfe',
-    phone: PHONE,
-    phoneDisplay: PHONE_DISPLAY,
+    phone: BUFE_PHONE,
+    phoneDisplay: BUFE_PHONE_DISPLAY,
     whatsapp: WHATSAPP_NUMBER,
     hours: bufeHours,
   },

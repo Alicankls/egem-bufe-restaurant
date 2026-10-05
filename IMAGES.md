@@ -21,7 +21,6 @@ Bu tablo, `src/config/images.ts` içindeki tüm görsel slotlarını listeler. B
 | home.mosaic.5 | Anasayfa Mozaik Banner (destek, geniş şerit) | /images/home/mosaic-5.jpg | 2/1 | 1800x900 | Kuruyemiş ve atıştırmalık reyonu |
 | home.parallax | Anasayfa Arka Plan Görselli Bölüm | /images/home/parallax.jpg | 21/9 | 2400x1000 | Lokantanın dış cephesi, geniş ve sakin |
 | home.trio.1 | Anasayfa Üçlü Görsel Şeridi | /images/home/trio-1.jpg | 4/3 | 1200x900 | Restaurant giriş kapısı |
-| home.trio.2 | Anasayfa Üçlü Görsel Şeridi | /images/home/trio-2.jpg | 4/3 | 1200x900 | Büfe oturma alanı ve tezgahı |
 | home.trio.3 | Anasayfa Üçlü Görsel Şeridi | /images/home/trio-3.jpg | 4/3 | 1200x900 | Büfe dış cephe tabelası |
 | home.blockA.1 | Anasayfa İkili Blok A (Restaurant) | /images/home/block-a-1.jpg | 3/4 | 900x1200 | Günlük tabldot tabağı |
 | home.blockA.2 | Anasayfa İkili Blok A (Restaurant) | /images/home/block-a-2.jpg | 4/5 | 900x1125 | Meze/ürün reyonu |
@@ -36,7 +35,6 @@ Bu tablo, `src/config/images.ts` içindeki tüm görsel slotlarını listeler. B
 | home.gallery.1 | Anasayfa Galeri | /images/home/gallery-1.jpg | 16/9 | 1024x576 | Salon genel görünüm |
 | home.gallery.2 | Anasayfa Galeri | /images/home/gallery-2.jpg | 16/9 | 1024x576 | Mutfak/hazırlık anı |
 | home.gallery.3 | Anasayfa Galeri | /images/home/gallery-3.jpg | 16/9 | 1024x576 | Büfe tezgahı |
-| home.gallery.4 | Anasayfa Galeri | /images/home/gallery-4.jpg | 16/9 | 1024x576 | Yemek detay çekimi |
 | home.gallery.5 | Anasayfa Galeri | /images/home/gallery-5.jpg | 16/9 | 1024x576 | Müşteri/servis anı |
 | home.gallery.6 | Anasayfa Galeri | /images/home/gallery-6.jpg | 16/9 | 1024x576 | Dış cephe/giriş |
 | restaurant.hero | /restaurant sayfa üstü | /images/restaurant/hero.jpg | 21/9 | 2400x1000 | Salon veya sıcak yemek geniş çekim |

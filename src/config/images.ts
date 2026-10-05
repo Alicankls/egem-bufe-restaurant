@@ -69,7 +69,6 @@ export const imageSlots: Record<string, ImageSlot> = {
   'home.parallax': { ...slot({ key: 'home.parallax', alt: 'EGEM-TRAK Restaurant tabelası, ağaçlar ve cami silüeti', ratio: '21/9', recommended: '2400x1000', note: 'Geniş, sakin, markanın güven veren yüzü' }), src: '/images/home/parallax.jpg' },
 
   'home.trio.1': { ...slot({ key: 'home.trio.1', alt: 'EGEM-TRAK Restaurant giriş kapısı', ratio: '4/3', recommended: '1200x900', note: 'Giriş/kapı görünümü' }), src: '/images/home/trio-1.jpg' },
-  'home.trio.2': { ...slot({ key: 'home.trio.2', alt: 'EGEM Büfe oturma alanı ve tezgahı', ratio: '4/3', recommended: '1200x900', note: 'İç mekan, masalar ve tezgah' }), src: '/images/home/trio-2.jpg' },
   'home.trio.3': { ...slot({ key: 'home.trio.3', alt: 'EGEM Büfe dış cephe tabelası', ratio: '4/3', recommended: '1200x900', note: 'Dış cephe/tabela görünümü' }), src: '/images/home/trio-3.jpg' },
 
   'home.blockA.1': { ...slot({ key: 'home.blockA.1', alt: 'EGEM-TRAK Restaurant günlük tabldot tabağı', ratio: '3/4', recommended: '900x1200', note: 'Restaurant tanıtım bloğu üst görsel' }), src: '/images/home/block-a-1.jpg' },
@@ -87,7 +86,6 @@ export const imageSlots: Record<string, ImageSlot> = {
   'home.gallery.1': { ...slot({ key: 'home.gallery.1', alt: 'EGEM-TRAK Restaurant cam cepheli iç salon', ratio: '16/9', recommended: '1024x576', note: 'İç salon, cam cephe' }), src: '/images/home/gallery-1.jpg' },
   'home.gallery.2': { ...slot({ key: 'home.gallery.2', alt: 'Restoran iç salonu ve büfe vitrini', ratio: '16/9', recommended: '1024x576', note: 'İç salon ve vitrin' }), src: '/images/home/gallery-2.jpg' },
   'home.gallery.3': { ...slot({ key: 'home.gallery.3', alt: 'Bahçe terasında gri masalar ve saksı bitkileri', ratio: '16/9', recommended: '1024x576', note: 'Bahçe terası' }), src: '/images/home/gallery-3.jpg' },
-  'home.gallery.4': { ...slot({ key: 'home.gallery.4', alt: 'EGEM Büfe girişi, soğutucular ve raflar', ratio: '16/9', recommended: '1024x576', note: 'Büfe girişi' }), src: '/images/home/gallery-4.jpg' },
   'home.gallery.5': { ...slot({ key: 'home.gallery.5', alt: 'TRAK Restaurant tenteli dış oturma alanı', ratio: '16/9', recommended: '1024x576', note: 'Dış cephe/tente' }), src: '/images/home/gallery-5.jpg' },
   'home.gallery.6': { ...slot({ key: 'home.gallery.6', alt: 'Bahçede ahşap kameriyeli oturma alanları', ratio: '16/9', recommended: '1024x576', note: 'Bahçe kameriyeler' }), src: '/images/home/gallery-6.jpg' },
 

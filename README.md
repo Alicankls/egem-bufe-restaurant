@@ -99,7 +99,7 @@ Tüm slotların tam listesi ve içerik önerileri için `IMAGES.md`'ye bakın.
 
 Telefon, WhatsApp, adres, harita linki ve çalışma saatleri **yalnızca** `src/config/site.ts` dosyasında tutulur. Başka hiçbir dosyada telefon/adres hard-code edilmemiştir.
 
-- Site genelinde **tek telefon numarası** kullanılır (0534 820 59 62): Restaurant ve Büfe aramaları, WhatsApp hattı ve mobil "Ara" butonu aynı numaraya yönlenir. Numarayı değiştirmek için dosyanın başındaki `PHONE`, `PHONE_DISPLAY` ve `WHATSAPP_NUMBER` sabitlerini güncellemek yeterlidir.
+- İki ayrı telefon numarası kullanılır — Restaurant: 0534 820 59 62, EGEM Büfe: 0282 673 44 22. WhatsApp hattı ve mobil "Ara" butonu Restaurant'ın mobil numarasına yönlenir. Numaraları değiştirmek için dosyanın başındaki `RESTAURANT_PHONE`, `RESTAURANT_PHONE_DISPLAY`, `BUFE_PHONE`, `BUFE_PHONE_DISPLAY` ve `WHATSAPP_NUMBER` sabitlerini güncellemek yeterlidir.
 - Sosyal medya bağlantıları (Facebook/Instagram/YouTube) istek üzerine kaldırılmıştır; footer'da yalnızca WhatsApp gösterilir.
 - Çalışma saatleri: Restaurant her gün 08:00-01:00 (kapanış gece yarısını geçer), Büfe her gün 08:00-22:00.
 

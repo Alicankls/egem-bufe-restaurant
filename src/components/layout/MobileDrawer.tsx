@@ -52,9 +52,12 @@ export default function MobileDrawer({ isOpen, onClose }: MobileDrawerProps) {
           </Link>
         ))}
       </nav>
-      <div className="mt-auto flex gap-3 px-5 py-6">
-        <a href={`tel:${siteConfig.restaurant.phone}`} className="flex flex-1 items-center justify-center gap-2 rounded-btn bg-white/10 py-3 text-sm font-semibold">
-          <Phone className="h-4 w-4" aria-hidden="true" /> Ara
+      <div className="mt-auto grid grid-cols-2 gap-3 px-5 py-6">
+        <a href={`tel:${siteConfig.restaurant.phone}`} className="flex items-center justify-center gap-2 rounded-btn bg-white/10 py-3 text-sm font-semibold">
+          <Phone className="h-4 w-4" aria-hidden="true" /> Restaurant Ara
+        </a>
+        <a href={`tel:${siteConfig.bufe.phone}`} className="flex items-center justify-center gap-2 rounded-btn bg-white/10 py-3 text-sm font-semibold">
+          <Phone className="h-4 w-4" aria-hidden="true" /> Büfe Ara
         </a>
         <a href={siteConfig.social.whatsapp} className="flex flex-1 items-center justify-center gap-2 rounded-btn bg-accent-500 py-3 text-sm font-semibold text-ink">
           <MessageCircle className="h-4 w-4" aria-hidden="true" /> WhatsApp
