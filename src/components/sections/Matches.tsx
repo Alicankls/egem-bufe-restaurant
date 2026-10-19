@@ -41,9 +41,10 @@ export default async function Matches() {
         <div className="min-w-0 overflow-hidden rounded-xl bg-white/5 ring-1 ring-white/10">
           {primary ? (
             <>
-              <div className="relative aspect-video w-full">
+              <div className="w-full bg-black/40">
+                {/* Görsel kırpılmadan, kendi oranıyla tam gösterilir; çok uzun afişler ekran yüksekliğiyle sınırlanır. */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={primary.imageUrl || DEFAULT_MATCH_IMAGE} alt="" className="h-full w-full object-cover" />
+                <img src={primary.imageUrl || DEFAULT_MATCH_IMAGE} alt="" className="mx-auto block h-auto max-h-[70vh] w-full object-contain" />
               </div>
               <div className="flex flex-col gap-2 p-5">
                 <div className="flex flex-wrap items-center gap-2">

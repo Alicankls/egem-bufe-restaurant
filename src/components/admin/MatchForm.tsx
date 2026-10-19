@@ -168,7 +168,7 @@ export default function MatchForm({ match }: { match?: Match }) {
           {imageUrl ? (
             <div className="relative">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={imageUrl} alt="Maç fotoğrafı" className="aspect-video w-full rounded-lg object-cover" />
+              <img src={imageUrl} alt="Maç fotoğrafı" className="h-auto max-h-[70vh] w-full rounded-lg bg-black/5 object-contain" />
               <button
                 type="button"
                 onClick={() => setImageUrl('')}
