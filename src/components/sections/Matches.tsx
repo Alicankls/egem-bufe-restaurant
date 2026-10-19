@@ -2,6 +2,7 @@ import { Tv } from 'lucide-react'
 import Container from '@/components/ui/Container'
 import Section from '@/components/ui/Section'
 import Button from '@/components/ui/Button'
+import LoopVideo from '@/components/ui/LoopVideo'
 import { getMatches } from '@/lib/queries/matches'
 import { getSettings } from '@/lib/queries/settings'
 import { selectTodayMatches, selectNextMatch, formatMatchDate, formatMatchTime, DEFAULT_MATCH_IMAGE } from '@/lib/matches'
@@ -36,6 +37,14 @@ export default async function Matches() {
           <Button href="/menu?tab=bufe" className="mt-2">
             Menüye Göz At
           </Button>
+          <LoopVideo
+            mp4Src="/videos/matches/mac-tanitim.mp4"
+            poster="/videos/matches/mac-tanitim-poster.jpg"
+            ratio="1264/704"
+            withSoundToggle
+            label="Trabzonspor – Beşiktaş maç tanıtım videosu"
+            className="mt-4 w-full rounded-xl ring-1 ring-white/10"
+          />
         </div>
 
         <div className="min-w-0 overflow-hidden rounded-xl bg-white/5 ring-1 ring-white/10">
