@@ -70,23 +70,34 @@ function selectUpcoming<T extends MatchLike>(matches: T[], now: Date = new Date(
     .sort((a, b) => a.kickoffAt.getTime() - b.kickoffAt.getTime())
 }
 
+/** Maç yarın mı oynanıyor (Türkiye takvim günü)? */
+export function isTomorrow(kickoffAt: Date, now: Date = new Date()): boolean {
+  return isToday(kickoffAt, new Date(now.getTime() + 24 * 60 * 60 * 1000))
+}
+
+/** Büyük karttaki rozet: "BUGÜN", "YARIN" ya da daha ileri tarihler için "YAKINDA". */
+export function matchDayLabel(kickoffAt: Date, now: Date = new Date()): string {
+  if (isToday(kickoffAt, now)) return 'BUGÜN'
+  if (isTomorrow(kickoffAt, now)) return 'YARIN'
+  return 'YAKINDA'
+}
+
 /**
- * Bugün oynanacak (yayında, henüz geçmemiş) maçları döner. Büyük kartta
- * gösterilecek "primary" maç: varsa öne çıkan (isFeatured), yoksa en erken
- * olan; kalan bugünkü maçlar "others" olarak küçük satırlarda listelenir.
+ * Anasayfada gösterilecek maçlar: yayında ve henüz geçmemiş maçlardan en
+ * yakın günün maçları (bugün maç varsa bugün, yoksa yarın ya da sonraki ilk
+ * maç günü). Büyük kartta gösterilecek "primary" maç: o günün öne çıkanı
+ * (isFeatured), yoksa en erkeni; aynı günün kalan maçları "others" olarak
+ * küçük satırlarda listelenir.
  */
-export function selectTodayMatches<T extends MatchLike>(
+export function selectFeaturedMatches<T extends MatchLike>(
   matches: T[],
   now: Date = new Date()
 ): { primary: T | null; others: T[] } {
-  const today = selectUpcoming(matches, now).filter((m) => isToday(m.kickoffAt, now))
-  if (today.length === 0) return { primary: null, others: [] }
+  const upcoming = selectUpcoming(matches, now)
+  if (upcoming.length === 0) return { primary: null, others: [] }
 
-  const primary = today.find((m) => m.isFeatured) ?? today[0]
-  return { primary, others: today.filter((m) => m !== primary) }
-}
-
-/** Bugün maç yoksa "Sıradaki maç" olarak gösterilecek en yakın gelecekteki maç. */
-export function selectNextMatch<T extends MatchLike>(matches: T[], now: Date = new Date()): T | null {
-  return selectUpcoming(matches, now)[0] ?? null
+  const day = toDateInputValue(upcoming[0].kickoffAt)
+  const sameDay = upcoming.filter((m) => toDateInputValue(m.kickoffAt) === day)
+  const primary = sameDay.find((m) => m.isFeatured) ?? sameDay[0]
+  return { primary, others: sameDay.filter((m) => m !== primary) }
 }

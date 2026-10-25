@@ -120,7 +120,7 @@ export async function deletePastMatches(): Promise<{ error?: string; count?: num
   return { count: pastIds.length }
 }
 
-/** Maç Yayınları sayfasının üstündeki "bugün maç yoksa gösterilecek mesaj" — Settings.noMatchMessage. */
+/** Maç Yayınları sayfasının üstündeki "yaklaşan maç yokken gösterilecek mesaj" — Settings.noMatchMessage. */
 export async function updateNoMatchMessage(formData: FormData): Promise<{ error?: string }> {
   const guard = await requireAdmin()
   if (guard.error) return guard

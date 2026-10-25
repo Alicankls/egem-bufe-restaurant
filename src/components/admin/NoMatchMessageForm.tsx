@@ -21,10 +21,10 @@ export default function NoMatchMessageForm({ initialMessage }: { initialMessage:
   return (
     <form action={handleSubmit} className="mb-8 flex flex-col gap-2 rounded-xl bg-white p-6 shadow-sm">
       <label htmlFor="noMatchMessage" className="text-sm font-medium text-ink">
-        Maç olmayan günlerde gösterilecek mesaj
+        Yaklaşan maç yokken gösterilecek mesaj
       </label>
       <p className="text-xs text-ink-soft">
-        Bugün yayında maç yoksa anasayfada bunun yerine gösterilir. Boş bırakırsan sıradaki maç otomatik önerilir.
+        Anasayfada her zaman en yakın maç gösterilir (bugün yoksa yarınki ya da sonraki). Bu mesaj yalnızca eklenmiş hiçbir yaklaşan maç yokken görünür.
       </p>
       <div className="mt-1 flex flex-col gap-3 sm:flex-row">
         <input

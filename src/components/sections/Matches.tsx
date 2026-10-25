@@ -5,7 +5,7 @@ import Button from '@/components/ui/Button'
 import LoopVideo from '@/components/ui/LoopVideo'
 import { getMatches } from '@/lib/queries/matches'
 import { getSettings } from '@/lib/queries/settings'
-import { selectTodayMatches, selectNextMatch, formatMatchDate, formatMatchTime, DEFAULT_MATCH_IMAGE } from '@/lib/matches'
+import { selectFeaturedMatches, matchDayLabel, formatMatchDate, formatMatchTime, DEFAULT_MATCH_IMAGE } from '@/lib/matches'
 import type { Match } from '@prisma/client'
 
 function OtherMatchRow({ match }: { match: Match }) {
@@ -21,8 +21,7 @@ function OtherMatchRow({ match }: { match: Match }) {
 
 export default async function Matches() {
   const [all, settings] = await Promise.all([getMatches(), getSettings()])
-  const { primary, others } = selectTodayMatches(all)
-  const next = primary ? null : selectNextMatch(all)
+  const { primary, others } = selectFeaturedMatches(all)
   const noMatchMessage = settings.noMatchMessage?.trim()
 
   return (
@@ -57,7 +56,7 @@ export default async function Matches() {
               </div>
               <div className="flex flex-col gap-2 p-5">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="inline-flex rounded-full bg-accent-500 px-2.5 py-1 text-[11px] font-bold text-ink">BUGÜN</span>
+                  <span className="inline-flex rounded-full bg-accent-500 px-2.5 py-1 text-[11px] font-bold text-ink">{matchDayLabel(primary.kickoffAt)}</span>
                   <span className="inline-flex rounded-full bg-white/10 px-2.5 py-1 text-[11px] font-semibold text-white/80">
                     {primary.competition}
                   </span>
@@ -81,14 +80,8 @@ export default async function Matches() {
           ) : (
             <div className="flex flex-col items-center gap-3 px-6 py-12 text-center">
               <Tv className="h-8 w-8 text-white/40" aria-hidden="true" />
-              <p className="text-[17px] font-bold text-white">Bugün maç yok</p>
-              {noMatchMessage ? (
-                <p className="text-[15px] text-white/70">{noMatchMessage}</p>
-              ) : next ? (
-                <p className="text-[15px] text-white/70">
-                  Sıradaki maç: {formatMatchDate(next.kickoffAt)}, {formatMatchTime(next.kickoffAt)} – {next.homeTeam} – {next.awayTeam}
-                </p>
-              ) : null}
+              <p className="text-[17px] font-bold text-white">Yaklaşan maç yok</p>
+              {noMatchMessage && <p className="text-[15px] text-white/70">{noMatchMessage}</p>}
             </div>
           )}
         </div>
