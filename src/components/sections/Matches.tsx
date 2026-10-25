@@ -40,9 +40,9 @@ export default async function Matches() {
           <LoopVideo
             mp4Src="/videos/matches/mac-tanitim.mp4"
             poster="/videos/matches/mac-tanitim-poster.jpg"
-            ratio="1264/704"
+            ratio="832/480"
             withSoundToggle
-            label="Trabzonspor – Beşiktaş maç tanıtım videosu"
+            label="Maç tanıtım videosu"
             className="mt-4 w-full rounded-xl ring-1 ring-white/10"
           />
         </div>
