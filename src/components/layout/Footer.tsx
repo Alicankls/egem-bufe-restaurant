@@ -44,6 +44,25 @@ export default function Footer() {
             <MessageCircle className="h-4 w-4" aria-hidden="true" />
           </a>
         </div>
+        <div className="mt-6 flex justify-center border-t border-white/10 pt-6">
+          <a
+            href="https://bealstudio.com/tr"
+            target="_blank"
+            rel="noopener"
+            aria-label="Web tasarım: Beal Studio (yeni sekmede açılır)"
+            className="group inline-flex min-h-11 items-center gap-3 rounded-md px-2 text-xs text-white/60 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-950"
+          >
+            <span>Web tasarım</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/brand/bealstudio-logo-white.png"
+              alt=""
+              width={87}
+              height={36}
+              className="h-9 w-auto opacity-70 transition-opacity group-hover:opacity-100"
+            />
+          </a>
+        </div>
       </Container>
     </footer>
   )
